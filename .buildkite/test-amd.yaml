@@ -7439,7 +7439,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" -1
+- label: "Multi-Modal Models (Standard) 1: qwen -1"
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   agent_pool: mi300_1
@@ -7454,7 +7454,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" -2
+- label: "Multi-Modal Models (Standard) 1: qwen2 -2"
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   agent_pool: mi300_1
@@ -7469,7 +7469,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" -3
+- label: "Multi-Modal Models (Standard) 1: qwen2 -3"
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   agent_pool: mi300_1
@@ -7484,7 +7484,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" -4
+- label: "Multi-Modal Models (Standard) 1: qwen2 -4"
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   agent_pool: mi300_1
