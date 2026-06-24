@@ -109,8 +109,15 @@ upload_pipeline() {
     curl -sSfL https://github.com/mitsuhiko/minijinja/releases/download/2.3.1/minijinja-cli-installer.sh | sh
     source "$HOME/.cargo/env"
 
-    curl -o .buildkite/test-template.j2 \
-        "https://raw.githubusercontent.com/rocm/vllm/${BUILDKITE_BRANCH}/.buildkite/test-template-amd.j2?$(date +%s)"
+    # Use the local template from the checked-out branch instead of downloading from rocm/vllm
+    if [ -f .buildkite/test-template-amd.j2 ]; then
+        echo "Using local test-template-amd.j2 from checked-out branch"
+        cp .buildkite/test-template-amd.j2 .buildkite/test-template.j2
+    else
+        echo "WARNING: test-template-amd.j2 not found locally, downloading from rocm/vllm"
+        curl -o .buildkite/test-template.j2 \
+            "https://raw.githubusercontent.com/rocm/vllm/${BUILDKITE_BRANCH}/.buildkite/test-template-amd.j2?$(date +%s)"
+    fi
 
 
     # (WIP) Use pipeline generator instead of jinja template
