@@ -1,0 +1,10 @@
+# Entry pipeline for sheralskumar/vllm AMD CI (native pilot).
+# Configure the Buildkite pipeline to read steps from this file
+# (Settings → Steps → Read steps from repository → .buildkite/pipeline-amd.yaml).
+steps:
+  - label: ":pipeline: Upload AMD CI pipeline"
+    key: upload-amd-pipeline
+    commands:
+      - bash .buildkite/bootstrap-amd.sh
+    agents:
+      queue: amd-cpu

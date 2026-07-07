@@ -1,16 +1,16 @@
 # Pilot-only AMD CI test list for shekumar/native-ci-pilot.
 # Full upstream test-amd.yaml is on vllm-project/main — restore when merging back.
 #
-# Rendered by ci-infra test-template-amd.j2 (amd-ci-base + amd-build still run on amd-cpu).
+# Rendered by fork-local .buildkite/test-template-amd.j2 via bootstrap-amd.sh.
 
 steps:
 
-- label: Native CI Pilot - Basic Correctness (8 GPUs)
-  timeout_in_minutes: 95
+- label: Native CI Pilot - cuMem smoke (1 GPU)
+  timeout_in_minutes: 30
   mirror_hardwares: [amdproduction]
+  native_ci: true
   agent_pool: mi325_8
-  num_gpus: 8
+  num_gpus: 1
   working_dir: "/vllm-workspace/tests"
   commands:
-  - export VLLM_WORKER_MULTIPROC_METHOD=spawn
-  - pytest -v -s basic_correctness/test_mem.py
+  - pytest -v -s basic_correctness/test_mem.py::test_basic_cumem

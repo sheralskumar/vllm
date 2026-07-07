@@ -1,0 +1,193 @@
+{% set default_working_dir = "/vllm-workspace/tests" %}
+{% set default_amd_timeout_in_minutes = 180 %}
+{% set list_file_diff = list_file_diff | replace("\r", "") | replace("\n", "|") | split("|") %}
+{# TODO: Re-enable after validating the ROCm debug agent setup.
+{% set rocm_debug_agent_setup = "if test -f /opt/rocm/lib/librocm-debug-agent.so.2; then export HSA_TOOLS_LIB=/opt/rocm/lib/librocm-debug-agent.so.2 && export HSA_ENABLE_DEBUG=1 && echo ROCm debug agent enabled: /opt/rocm/lib/librocm-debug-agent.so.2; else echo 'WARNING: ROCm debug agent not found at /opt/rocm/lib/librocm-debug-agent.so.2; skipping coredump setup'; fi" %}
+#}
+{% set rocm_debug_agent_setup = "echo 'ROCm debug agent disabled; re-enable rocm_debug_agent_setup in test-template-amd.j2 after validating coredump setup'" %}
+
+{% macro amd_infra_retry(indent='') -%}
+{{ indent }}retry:
+{{ indent }}  automatic:
+{{ indent }}    - signal_reason: agent_stop  # Agent host stopped unexpectedly
+{{ indent }}      limit: 1
+{{ indent }}    - signal_reason: agent_refused  # Agent could not accept the job
+{{ indent }}      limit: 1
+{{ indent }}    - exit_status: -1  # Lost contact with the running agent
+{{ indent }}      signal_reason: none
+{{ indent }}      limit: 1
+{%- endmacro %}
+
+{% macro amd_step_slug(step) -%}
+{%- if step.agent_pool -%}{{ step.agent_pool }}-{%- endif -%}{{ step.label | replace(" ", "-") | lower | replace("(", "") | replace(")", "") | replace("%", "") | replace(",", "-") | replace("+", "-") }}
+{%- endmacro %}
+
+{# Native in-pod ROCm CI: override container-0 image per job (perf-eval podSpecPatch pattern). #}
+{% macro amd_native_ci_base_image() -%}
+rocm/vllm-dev:ci_base-$BUILDKITE_COMMIT
+{%- endmacro %}
+
+{% macro amd_native_k8s_plugin(step) -%}
+        plugins:
+          - kubernetes:
+              podSpecPatch:
+                imagePullSecrets:
+                  - name: docker-config
+                containers:
+                  - name: container-0
+                    image: {{ amd_native_ci_base_image() | safe }}
+                    resources:
+                      limits:
+                        amd.com/gpu: "{{ step.num_gpus or 1 }}"
+                    env:
+                      - name: AMD_CI_RUNTIME
+                        value: native
+                      - name: NATIVE_CI
+                        value: "true"
+{%- endmacro %}
+
+  - group: "AMD Tests"
+    depends_on: ~
+    steps:
+      - label: "AMD: :docker: ensure ci_base"
+        depends_on: ~
+        soft_fail: false
+        commands:
+          - bash .buildkite/scripts/ci-bake-rocm.sh ci-base-rocm-ci-with-deps
+        key: "amd-ci-base-ready"
+        env:
+          DOCKER_BUILDKIT: "1"
+          VLLM_BAKE_FILE: "docker/docker-bake-rocm.hcl"
+          PYTORCH_ROCM_ARCH: "gfx90a;gfx942;gfx950"
+          REMOTE_VLLM: "1"
+          VLLM_BRANCH: "$BUILDKITE_COMMIT"
+{{ amd_infra_retry('        ') }}
+        agents:
+          queue: amd-cpu
+
+      - label: "AMD: :docker: build image"
+        depends_on: "amd-ci-base-ready"
+        soft_fail: false
+        commands:
+          - |
+            if [[ "${ROCM_CI_ARTIFACT_ONLY:-0}" == "1" ]]; then
+              echo "ROCM_CI_ARTIFACT_ONLY=1; building ROCm wheel artifact only"
+              IMAGE_TAG="" bash .buildkite/scripts/ci-bake-rocm.sh test-rocm-ci-with-artifacts
+            else
+              bash .buildkite/scripts/ci-bake-rocm.sh test-rocm-ci-with-wheel
+            fi
+        key: "amd-build"
+        env:
+          DOCKER_BUILDKIT: "1"
+          VLLM_BAKE_FILE: "docker/docker-bake-rocm.hcl"
+          PYTORCH_ROCM_ARCH: "gfx90a;gfx942;gfx950"
+          IMAGE_TAG: "rocm/vllm-ci:$BUILDKITE_COMMIT"
+          REMOTE_VLLM: "1"
+          VLLM_BRANCH: "$BUILDKITE_COMMIT"
+{{ amd_infra_retry('        ') }}
+        agents:
+          queue: amd-cpu
+
+    {% for step in steps %}
+    {% if step.mirror_hardwares and mirror_hw in step.mirror_hardwares %}
+
+    {% set ns = namespace(blocked=1) %}
+    {% set step_slug = amd_step_slug(step) %}
+    {% set step_timeout_in_minutes = step.timeout_in_minutes or default_amd_timeout_in_minutes %}
+    {# Time out the container a minute before Buildkite times out the job. #}
+    {% set container_timeout_s = (step_timeout_in_minutes * 60 - 60) if step_timeout_in_minutes > 1 else step_timeout_in_minutes * 60 %}
+
+    {% if run_all == "1" or nightly == "1" %}
+    {% set ns.blocked = 0 %}
+    {% endif %}
+
+      {% if step.source_file_dependencies %}
+        {% for source_file in step.source_file_dependencies %}
+          {% for file in list_file_diff %}
+            {% if file and file[:source_file|length] == source_file %}
+              {% set ns.blocked = 0 %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        {% set ns.blocked = 0 %}
+      {% endif %}
+
+      {% if (ns.blocked == 1 or (step.optional and nightly != "1")) and not (step.autorun_on_main == true and branch == "main") %}
+      - block: "Run {{ step.agent_pool }}: {{ step.label }}"
+        depends_on: amd-build
+        key: block-{{ step_slug }}
+      {% endif %}
+
+      - label: "{{ step.agent_pool }}: {{ step.label }}"
+      {% if (ns.blocked == 1 or (step.optional and nightly != "1")) and not (step.autorun_on_main == true and branch == "main") %}
+        depends_on: block-{{ step_slug }}
+        {% else %}
+        depends_on: amd-build
+        {% endif %}
+        timeout_in_minutes: {{ step_timeout_in_minutes }}
+        agents:
+          {% if step.agent_pool %}
+          queue: amd_{{ step.agent_pool }}
+          {% else %}
+          queue: amd_mi300
+          {% endif %}
+        {% if step.native_ci %}
+{{ amd_native_k8s_plugin(step) }}
+        {% endif %}
+        {% if step.no_plugin %}
+        command: {{ (step.command or (step.commands | join(' && '))) | safe }}
+        {% if step.env %}
+        env:
+          {% for key, value in step.env | items %}
+          {{ key }}: {{ value | safe }}
+          {% endfor %}
+        {% endif %}
+        {% else %}
+        command: bash .buildkite/scripts/hardware_ci/run-amd-test.sh
+        env:
+          DOCKER_BUILDKIT: "1"
+          NUM_NODES: "{{ step.num_nodes or 1 }}"
+          # Agent hooks read DOCKER_IMAGE_NAME before run-amd-test.py starts.
+          {% if step.native_ci %}
+          # Native pilot: podSpecPatch sets container-0 to ci_base-<commit> (built by amd-ci-base).
+          DOCKER_IMAGE_NAME: "{{ amd_native_ci_base_image() | safe }}"
+          VLLM_CI_BASE_IMAGE: "{{ amd_native_ci_base_image() | safe }}"
+          AMD_CI_RUNTIME: "native"
+          NATIVE_CI: "true"
+          {% else %}
+          # DinD path: hook warm-up uses stable ci_base; docker run may use fallback image.
+          DOCKER_IMAGE_NAME: "rocm/vllm-dev:ci_base"
+          VLLM_CI_BASE_IMAGE: "rocm/vllm-dev:ci_base"
+          {% endif %}
+          VLLM_CI_FALLBACK_IMAGE: "rocm/vllm-ci:$BUILDKITE_COMMIT"
+          VLLM_CI_USE_ARTIFACTS: "1"
+          VLLM_CI_ARTIFACT_GLOB: "artifacts/vllm-rocm-install/vllm-rocm-install.tar.gz"
+          VLLM_CI_RESULTS_ROOT: "/home/buildkite-agent/huggingface/amd-ci-results"
+          {% if container_timeout_s %}
+          CONTAINER_TIMEOUT_S: "{{ container_timeout_s }}"
+          {% endif %}
+          {% if step.num_nodes and step.num_nodes >= 2 %}
+          VLLM_CI_EXECUTION_MODE: "multi-node"
+          VLLM_NUM_GPUS_PER_NODE: "{{ step.num_gpus or 1 }}"
+          VLLM_NODE_COMMAND_COUNT: "{{ step.commands | length }}"
+          {% for node_command in step.commands %}
+          VLLM_NODE_COMMAND_{{ loop.index0 }}: "(command rocm-smi || true) && {{ rocm_debug_agent_setup | safe }} && export VLLM_TEST_GROUP_NAME={{ step_slug }}-node{{ loop.index0 }} && export VLLM_ALLOW_DEPRECATED_BEAM_SEARCH=1 && cd {{ (step.working_dir or default_working_dir) | safe }} && {{ node_command | replace('\"', '\\\"') | safe }}"
+          {% endfor %}
+          {% else %}
+          VLLM_CI_EXECUTION_MODE: "single-node"
+          VLLM_TEST_COMMANDS: "(command rocm-smi || true) && {{ rocm_debug_agent_setup | safe }} && export VLLM_TEST_GROUP_NAME={{ step_slug }} && export VLLM_ALLOW_DEPRECATED_BEAM_SEARCH=1 && cd {{ (step.working_dir or default_working_dir) | safe }} && {{ (step.command or (step.commands | join(' && '))) | replace('\"', '\\\"') | safe }}"
+          {% endif %}
+        {% endif %}
+        priority: 100
+        {% if step.grade and step.grade == "Blocking" %}
+        soft_fail: false
+        {% else %}
+        soft_fail: true
+        {% endif %}
+        {% if step.parallelism %}
+        parallelism: {{ step.parallelism }}
+        {% endif %}
+{{ amd_infra_retry('        ') }}
+    {% endif %}
+    {% endfor %}
