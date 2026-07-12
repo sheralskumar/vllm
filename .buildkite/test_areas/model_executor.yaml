@@ -25,7 +25,7 @@ steps:
     - pytest -v -s entrypoints/openai/completion/test_tensorizer_entrypoint.py --timeout=900 --timeout-method=thread
   mirror:
     amd:
-      dind: false
+      native_ci: true
       device: mi300_1
       depends_on:
       - image-build-amd

@@ -14,6 +14,7 @@ steps:
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-small.txt
   mirror:
     amd:
+      native_ci: true
       device: mi325_1
       timeout_in_minutes: 55
       depends_on:
@@ -103,7 +104,7 @@ steps:
   - vllm/transformers_utils/configs/qwen3_5_moe.py
   - vllm/model_executor/models/qwen3_next.py
   - vllm/model_executor/models/qwen3_next_mtp.py
-  - vllm/third_party/flash_linear_attention/ops/
+  - vllm/model_executor/layers/fla/ops/
   commands:
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-qwen35-blackwell.txt
 
@@ -117,7 +118,7 @@ steps:
     - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-h200.txt
   mirror:
     amd:
-      dind: false
+      native_ci: true
       device: mi300_8
       timeout_in_minutes: 60
       depends_on:
