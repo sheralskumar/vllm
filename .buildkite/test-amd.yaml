@@ -1524,7 +1524,7 @@ steps:
   commands:
   - bash weight_loading/run_model_weight_loading_test.sh -c weight_loading/models-large-amd.txt
 
-- label: Basic Correctness # TBD [stress copy 2]
+- label: Basic Correctness [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1542,7 +1542,7 @@ steps:
   - pytest -v -s basic_correctness/test_basic_correctness.py
   - pytest -v -s basic_correctness/test_cpu_offload.py
 
-- label: Benchmarks # TBD [stress copy 2]
+- label: Benchmarks [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1554,7 +1554,7 @@ steps:
   commands:
   - bash scripts/run-benchmarks.sh
 
-- label: Benchmarks CLI Test # TBD [stress copy 2]
+- label: Benchmarks CLI Test [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1567,7 +1567,7 @@ steps:
 
 #----------------------------------------------------------  mi325 · compile  ----------------------------------------------------------#
 
-- label: Fusion E2E Config Sweep (H100-MI300) # TBD [stress copy 2]
+- label: Fusion E2E Config Sweep (H100-MI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1587,7 +1587,7 @@ steps:
   - rocm-smi
   - pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k "llama-3"
 
-- label: Fusion E2E Quick (H100-MI300) # TBD [stress copy 2]
+- label: Fusion E2E Quick (H100-MI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1608,7 +1608,7 @@ steps:
   # Different from CUDA, Qwen requires +rms_norm and +quant_fp8 as rms+quant fusion is only supported on AITER
   - "pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k 'inductor_partition and +rms_norm and +quant_fp8 and qwen3'"
 
-- label: PyTorch Compilation Passes Unit Tests # TBD [stress copy 2]
+- label: PyTorch Compilation Passes Unit Tests [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1619,7 +1619,7 @@ steps:
   commands:
   - pytest -s -v compile/passes --ignore compile/passes/distributed
 
-- label: Pytorch Nightly Dependency Override Check # TBD [stress copy 2]
+- label: Pytorch Nightly Dependency Override Check [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1632,7 +1632,7 @@ steps:
   commands:
   - bash standalone_tests/pytorch_nightly_dependency.sh
 
-- label: Platform Tests (CUDA) # TBD [stress copy 2]
+- label: Platform Tests (CUDA) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1646,7 +1646,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · detokenizer  --------------------------------------------------------#
 
-- label: Async Engine, Inputs, Utils, Worker # TBD [stress copy 2]
+- label: Async Engine, Inputs, Utils, Worker [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1663,7 +1663,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · distributed  --------------------------------------------------------#
 
-- label: EPLB Algorithm # TBD [stress copy 2]
+- label: EPLB Algorithm [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1676,7 +1676,7 @@ steps:
   - pytest -v -s distributed/test_eplb_algo.py
   - pytest -v -s distributed/test_eplb_utils.py
 
-- label: Entrypoints Integration (API Server 2) # TBD [stress copy 2]
+- label: Entrypoints Integration (API Server 2) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1694,7 +1694,7 @@ steps:
   - PYTHONPATH=/vllm-workspace pytest -v -s entrypoints/rpc
   - pytest -v -s tool_use
 
-- label: Entrypoints Integration (API Server openai - Part 1) # TBD [stress copy 2]
+- label: Entrypoints Integration (API Server openai - Part 1) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1709,7 +1709,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/chat_completion --ignore=entrypoints/openai/chat_completion/test_chat_with_tool_reasoning.py --ignore=entrypoints/openai/chat_completion/test_oot_registration.py
 
-- label: Entrypoints Integration (API Server openai - Part 2) # TBD [stress copy 2]
+- label: Entrypoints Integration (API Server openai - Part 2) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1726,7 +1726,7 @@ steps:
   - pytest -v -s entrypoints/openai/speech_to_text/
   - pytest -v -s entrypoints/test_chat_utils.py
 
-- label: Entrypoints Integration (API Server openai - Part 3) # TBD [stress copy 2]
+- label: Entrypoints Integration (API Server openai - Part 3) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1741,7 +1741,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai --ignore=entrypoints/openai/chat_completion --ignore=entrypoints/openai/completion --ignore=entrypoints/openai/speech_to_text/ --ignore=entrypoints/openai/correctness/ --ignore=entrypoints/openai/tool_parsers/ --ignore=entrypoints/openai/responses --ignore=entrypoints/openai/test_multi_api_servers.py
 
-- label: Entrypoints Integration (LLM) # TBD [stress copy 2]
+- label: Entrypoints Integration (LLM) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1759,7 +1759,7 @@ steps:
   - pytest -v -s entrypoints/llm/test_generate.py
   - pytest -v -s entrypoints/offline_mode
 
-- label: Entrypoints Integration (Pooling) # TBD [stress copy 2]
+- label: Entrypoints Integration (Pooling) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1773,7 +1773,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/pooling
 
-- label: Entrypoints Integration (Responses API) # TBD [stress copy 2]
+- label: Entrypoints Integration (Responses API) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1787,7 +1787,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/responses
 
-- label: Entrypoints Unit Tests # TBD [stress copy 2]
+- label: Entrypoints Unit Tests [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1801,7 +1801,7 @@ steps:
   - pytest -v -s entrypoints/openai/tool_parsers
   - pytest -v -s entrypoints/ --ignore=entrypoints/llm --ignore=entrypoints/rpc --ignore=entrypoints/sleep --ignore=entrypoints/serve/instrumentator --ignore=entrypoints/openai --ignore=entrypoints/offline_mode --ignore=entrypoints/test_chat_utils.py  --ignore=entrypoints/pooling
 
-- label: OpenAI API correctness # TBD [stress copy 2]
+- label: OpenAI API correctness [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1822,7 +1822,7 @@ steps:
 
 #-----------------------------------------------------------  mi325 · evals  -----------------------------------------------------------#
 
-- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) # TBD [stress copy 2]
+- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1842,7 +1842,7 @@ steps:
   commands:
   - bash .buildkite/scripts/scheduled_integration_test/deepseek_v2_lite_prefetch_offload.sh 0.25 200 8030
 
-- label: LM Eval Small Models # TBD [stress copy 2]
+- label: LM Eval Small Models [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1859,7 +1859,7 @@ steps:
   commands:
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-small.txt
 
-- label: LM Eval Small Models (MI300) # TBD [stress copy 2]
+- label: LM Eval Small Models (MI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1876,7 +1876,7 @@ steps:
   commands:
   - pytest -s -v test_lm_eval_correctness.py --config-list-file=configs/models-small-rocm.txt
 
-- label: Qwen3-30B-A3B-FP8-block Accuracy (4xH100-4xMI300) # TBD [stress copy 2]
+- label: Qwen3-30B-A3B-FP8-block Accuracy (4xH100-4xMI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1896,7 +1896,7 @@ steps:
   commands:
   - bash .buildkite/scripts/scheduled_integration_test/qwen30b_a3b_fp8_block_ep_eplb.sh 0.8 200 8020
 
-- label: Examples # TBD [stress copy 2]
+- label: Examples [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1932,7 +1932,7 @@ steps:
 
 #----------------------------------------------------------  mi325 · kernels  ----------------------------------------------------------#
 
-- label: Kernels Core Operation Test # TBD [stress copy 2]
+- label: Kernels Core Operation Test [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1948,7 +1948,7 @@ steps:
   commands:
   - pytest -v -s kernels/core --ignore=kernels/core/test_minimax_reduce_rms.py  kernels/test_concat_mla_q.py kernels/test_top_k_per_row.py
 
-- label: Language Models Test (Extended Pooling)  # TBD [stress copy 2]
+- label: Language Models Test (Extended Pooling)  [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1959,7 +1959,7 @@ steps:
   commands:
   - pytest -v -s models/language/pooling -m 'not core_model'
 
-- label: Language Models Tests (Standard) # TBD [stress copy 2]
+- label: Language Models Tests (Standard) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1973,7 +1973,7 @@ steps:
   - pip freeze | grep -E 'torch'
   - pytest -v -s models/language -m 'core_model and (not slow_test)'
 
-- label: Multi-Modal Models (Extended Generation 1) # TBD [stress copy 2]
+- label: Multi-Modal Models (Extended Generation 1) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1988,7 +1988,7 @@ steps:
   - pytest -v -s models/multimodal/generation -m 'not core_model' --ignore models/multimodal/generation/test_common.py
   - pytest -v -s models/multimodal/test_mapping.py
 
-- label: Multi-Modal Models (Extended Generation 2) # TBD [stress copy 2]
+- label: Multi-Modal Models (Extended Generation 2) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2001,7 +2001,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/generation/test_common.py -m 'split(group=0) and not core_model'
 
-- label: Multi-Modal Models (Extended Generation 3) # TBD [stress copy 2]
+- label: Multi-Modal Models (Extended Generation 3) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2014,7 +2014,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/generation/test_common.py -m 'split(group=1) and not core_model'
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" # TBD [stress copy 2]
+- label: "Multi-Modal Models (Standard) 1: qwen2 [stress copy 2]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2029,7 +2029,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_common.py -m core_model -k "qwen2"
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
-- label: "Multi-Modal Models (Standard) 3: llava + qwen2_vl" # TBD [stress copy 2]
+- label: "Multi-Modal Models (Standard) 3: llava + qwen2_vl [stress copy 2]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2045,7 +2045,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_common.py -m core_model -k "not qwen2 and not qwen3 and not gemma"
   - pytest -v -s models/multimodal/generation/test_qwen2_vl.py -m core_model
 
-- label: "Multi-Modal Models (Standard) 4: other + whisper" # TBD [stress copy 2]
+- label: "Multi-Modal Models (Standard) 4: other + whisper [stress copy 2]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2061,7 +2061,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_memory_leak.py -m core_model
   - cd .. && VLLM_WORKER_MULTIPROC_METHOD=spawn pytest -v -s tests/models/multimodal/generation/test_whisper.py -m core_model
 
-- label: Multi-Modal Processor # 1h 42m [stress copy 2]
+- label: Multi-Modal Processor [stress copy 2] # 1h 42m
   timeout_in_minutes: 138
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2075,7 +2075,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/processing/test_tensor_schema.py
 
-- label: Quantized Models Test # TBD [stress copy 2]
+- label: Quantized Models Test [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2089,7 +2089,7 @@ steps:
   commands:
   - pytest -v -s models/quantization
 
-- label: Transformers Nightly Models # TBD [stress copy 2]
+- label: Transformers Nightly Models [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2118,7 +2118,7 @@ steps:
 
 #-------------------------------------------------------  mi325 · quantization  --------------------------------------------------------#
 
-- label: Quantization # TBD [stress copy 2]
+- label: Quantization [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2144,7 +2144,7 @@ steps:
 
 #-----------------------------------------------------------  mi325 · rocm  ------------------------------------------------------------#
 
-- label: ROCm AITER Ops Test # TBD [stress copy 2]
+- label: ROCm AITER Ops Test [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2161,7 +2161,7 @@ steps:
 
 #---------------------------------------------------------  mi325 · samplers  ----------------------------------------------------------#
 
-- label: Samplers Test # TBD [stress copy 2]
+- label: Samplers Test [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2181,7 +2181,7 @@ steps:
 
 #------------------------------------------------------------  mi325 · misc  ------------------------------------------------------------#
 
-- label: Python-only Installation # TBD [stress copy 2]
+- label: Python-only Installation [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2194,7 +2194,7 @@ steps:
   commands:
   - bash standalone_tests/python_only_compile.sh
 
-- label: Regression # TBD [stress copy 2]
+- label: Regression [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2208,7 +2208,7 @@ steps:
 
 #---------------------------------------------------------  mi325 · ray_compat  ---------------------------------------------------------#
 
-- label: Ray Dependency Compatibility Check # TBD [stress copy 2]
+- label: Ray Dependency Compatibility Check [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2222,7 +2222,7 @@ steps:
 
 #------------------------------------------------------------  mi325 · v1  -------------------------------------------------------------#
 
-- label: Acceptance Length Test (Large Models) # TBD [stress copy 2]
+- label: Acceptance Length Test (Large Models) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2237,7 +2237,7 @@ steps:
   - export VLLM_ALLOW_INSECURE_SERIALIZATION=1
   - pytest -v -s v1/spec_decode/test_acceptance_length.py -m slow_test
 
-- label: e2e Core (1 GPU) # TBD [stress copy 2]
+- label: e2e Core (1 GPU) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2250,7 +2250,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/general --ignore v1/e2e/general/test_async_scheduling.py
 
-- label: e2e Scheduling (1 GPU) # TBD [stress copy 2]
+- label: e2e Scheduling (1 GPU) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2263,7 +2263,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/general/test_async_scheduling.py
 
-- label: Engine (1 GPU) # TBD [stress copy 2]
+- label: Engine (1 GPU) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2277,7 +2277,7 @@ steps:
   - pytest -v -s v1/engine/test_preprocess_error_handling.py
   - pytest -v -s v1/engine --ignore v1/engine/test_preprocess_error_handling.py
 
-- label: Spec Decode Draft Model # TBD [stress copy 2]
+- label: Spec Decode Draft Model [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2294,7 +2294,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "draft_model or no_sync or batch_inference"
 
-- label: Spec Decode Eagle # TBD [stress copy 2]
+- label: Spec Decode Eagle [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2310,7 +2310,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "eagle_correctness"
 
-- label: Spec Decode Ngram + Suffix # TBD [stress copy 2]
+- label: Spec Decode Ngram + Suffix [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2327,7 +2327,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "ngram or suffix"
 
-- label: Spec Decode Speculators + MTP # TBD [stress copy 2]
+- label: Spec Decode Speculators + MTP [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2345,7 +2345,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "speculators or mtp_correctness"
 
-- label: V1 attention (H100-MI300) # TBD [stress copy 2]
+- label: V1 attention (H100-MI300) [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2361,7 +2361,7 @@ steps:
   commands:
   - pytest -v -s v1/attention
 
-- label: V1 Core + KV + Metrics # TBD [stress copy 2]
+- label: V1 Core + KV + Metrics [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2387,7 +2387,7 @@ steps:
   # - export HSA_NO_SCRATCH_RECLAIM=1
   - pytest -v -s entrypoints/openai/correctness/test_lmeval.py::test_lm_eval_accuracy_v1_engine
 
-- label: V1 Sample + Logits # TBD [stress copy 2]
+- label: V1 Sample + Logits [stress copy 2] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2407,7 +2407,7 @@ steps:
   - pytest -v -s v1/test_request.py
   - pytest -v -s v1/test_outputs.py
 
-- label: Basic Correctness # TBD [stress copy 3]
+- label: Basic Correctness [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2425,7 +2425,7 @@ steps:
   - pytest -v -s basic_correctness/test_basic_correctness.py
   - pytest -v -s basic_correctness/test_cpu_offload.py
 
-- label: Benchmarks # TBD [stress copy 3]
+- label: Benchmarks [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2437,7 +2437,7 @@ steps:
   commands:
   - bash scripts/run-benchmarks.sh
 
-- label: Benchmarks CLI Test # TBD [stress copy 3]
+- label: Benchmarks CLI Test [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2450,7 +2450,7 @@ steps:
 
 #----------------------------------------------------------  mi325 · compile  ----------------------------------------------------------#
 
-- label: Fusion E2E Config Sweep (H100-MI300) # TBD [stress copy 3]
+- label: Fusion E2E Config Sweep (H100-MI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2470,7 +2470,7 @@ steps:
   - rocm-smi
   - pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k "llama-3"
 
-- label: Fusion E2E Quick (H100-MI300) # TBD [stress copy 3]
+- label: Fusion E2E Quick (H100-MI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2491,7 +2491,7 @@ steps:
   # Different from CUDA, Qwen requires +rms_norm and +quant_fp8 as rms+quant fusion is only supported on AITER
   - "pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k 'inductor_partition and +rms_norm and +quant_fp8 and qwen3'"
 
-- label: PyTorch Compilation Passes Unit Tests # TBD [stress copy 3]
+- label: PyTorch Compilation Passes Unit Tests [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2502,7 +2502,7 @@ steps:
   commands:
   - pytest -s -v compile/passes --ignore compile/passes/distributed
 
-- label: Pytorch Nightly Dependency Override Check # TBD [stress copy 3]
+- label: Pytorch Nightly Dependency Override Check [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2515,7 +2515,7 @@ steps:
   commands:
   - bash standalone_tests/pytorch_nightly_dependency.sh
 
-- label: Platform Tests (CUDA) # TBD [stress copy 3]
+- label: Platform Tests (CUDA) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2529,7 +2529,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · detokenizer  --------------------------------------------------------#
 
-- label: Async Engine, Inputs, Utils, Worker # TBD [stress copy 3]
+- label: Async Engine, Inputs, Utils, Worker [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2546,7 +2546,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · distributed  --------------------------------------------------------#
 
-- label: EPLB Algorithm # TBD [stress copy 3]
+- label: EPLB Algorithm [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2559,7 +2559,7 @@ steps:
   - pytest -v -s distributed/test_eplb_algo.py
   - pytest -v -s distributed/test_eplb_utils.py
 
-- label: Entrypoints Integration (API Server 2) # TBD [stress copy 3]
+- label: Entrypoints Integration (API Server 2) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2577,7 +2577,7 @@ steps:
   - PYTHONPATH=/vllm-workspace pytest -v -s entrypoints/rpc
   - pytest -v -s tool_use
 
-- label: Entrypoints Integration (API Server openai - Part 1) # TBD [stress copy 3]
+- label: Entrypoints Integration (API Server openai - Part 1) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2592,7 +2592,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/chat_completion --ignore=entrypoints/openai/chat_completion/test_chat_with_tool_reasoning.py --ignore=entrypoints/openai/chat_completion/test_oot_registration.py
 
-- label: Entrypoints Integration (API Server openai - Part 2) # TBD [stress copy 3]
+- label: Entrypoints Integration (API Server openai - Part 2) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2609,7 +2609,7 @@ steps:
   - pytest -v -s entrypoints/openai/speech_to_text/
   - pytest -v -s entrypoints/test_chat_utils.py
 
-- label: Entrypoints Integration (API Server openai - Part 3) # TBD [stress copy 3]
+- label: Entrypoints Integration (API Server openai - Part 3) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2624,7 +2624,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai --ignore=entrypoints/openai/chat_completion --ignore=entrypoints/openai/completion --ignore=entrypoints/openai/speech_to_text/ --ignore=entrypoints/openai/correctness/ --ignore=entrypoints/openai/tool_parsers/ --ignore=entrypoints/openai/responses --ignore=entrypoints/openai/test_multi_api_servers.py
 
-- label: Entrypoints Integration (LLM) # TBD [stress copy 3]
+- label: Entrypoints Integration (LLM) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2642,7 +2642,7 @@ steps:
   - pytest -v -s entrypoints/llm/test_generate.py
   - pytest -v -s entrypoints/offline_mode
 
-- label: Entrypoints Integration (Pooling) # TBD [stress copy 3]
+- label: Entrypoints Integration (Pooling) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2656,7 +2656,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/pooling
 
-- label: Entrypoints Integration (Responses API) # TBD [stress copy 3]
+- label: Entrypoints Integration (Responses API) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2670,7 +2670,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/responses
 
-- label: Entrypoints Unit Tests # TBD [stress copy 3]
+- label: Entrypoints Unit Tests [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2684,7 +2684,7 @@ steps:
   - pytest -v -s entrypoints/openai/tool_parsers
   - pytest -v -s entrypoints/ --ignore=entrypoints/llm --ignore=entrypoints/rpc --ignore=entrypoints/sleep --ignore=entrypoints/serve/instrumentator --ignore=entrypoints/openai --ignore=entrypoints/offline_mode --ignore=entrypoints/test_chat_utils.py  --ignore=entrypoints/pooling
 
-- label: OpenAI API correctness # TBD [stress copy 3]
+- label: OpenAI API correctness [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2705,7 +2705,7 @@ steps:
 
 #-----------------------------------------------------------  mi325 · evals  -----------------------------------------------------------#
 
-- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) # TBD [stress copy 3]
+- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2725,7 +2725,7 @@ steps:
   commands:
   - bash .buildkite/scripts/scheduled_integration_test/deepseek_v2_lite_prefetch_offload.sh 0.25 200 8030
 
-- label: LM Eval Small Models # TBD [stress copy 3]
+- label: LM Eval Small Models [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2742,7 +2742,7 @@ steps:
   commands:
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-small.txt
 
-- label: LM Eval Small Models (MI300) # TBD [stress copy 3]
+- label: LM Eval Small Models (MI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2759,7 +2759,7 @@ steps:
   commands:
   - pytest -s -v test_lm_eval_correctness.py --config-list-file=configs/models-small-rocm.txt
 
-- label: Qwen3-30B-A3B-FP8-block Accuracy (4xH100-4xMI300) # TBD [stress copy 3]
+- label: Qwen3-30B-A3B-FP8-block Accuracy (4xH100-4xMI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2779,7 +2779,7 @@ steps:
   commands:
   - bash .buildkite/scripts/scheduled_integration_test/qwen30b_a3b_fp8_block_ep_eplb.sh 0.8 200 8020
 
-- label: Examples # TBD [stress copy 3]
+- label: Examples [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2815,7 +2815,7 @@ steps:
 
 #----------------------------------------------------------  mi325 · kernels  ----------------------------------------------------------#
 
-- label: Kernels Core Operation Test # TBD [stress copy 3]
+- label: Kernels Core Operation Test [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2831,7 +2831,7 @@ steps:
   commands:
   - pytest -v -s kernels/core --ignore=kernels/core/test_minimax_reduce_rms.py  kernels/test_concat_mla_q.py kernels/test_top_k_per_row.py
 
-- label: Language Models Test (Extended Pooling)  # TBD [stress copy 3]
+- label: Language Models Test (Extended Pooling)  [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2842,7 +2842,7 @@ steps:
   commands:
   - pytest -v -s models/language/pooling -m 'not core_model'
 
-- label: Language Models Tests (Standard) # TBD [stress copy 3]
+- label: Language Models Tests (Standard) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2856,7 +2856,7 @@ steps:
   - pip freeze | grep -E 'torch'
   - pytest -v -s models/language -m 'core_model and (not slow_test)'
 
-- label: Multi-Modal Models (Extended Generation 1) # TBD [stress copy 3]
+- label: Multi-Modal Models (Extended Generation 1) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2871,7 +2871,7 @@ steps:
   - pytest -v -s models/multimodal/generation -m 'not core_model' --ignore models/multimodal/generation/test_common.py
   - pytest -v -s models/multimodal/test_mapping.py
 
-- label: Multi-Modal Models (Extended Generation 2) # TBD [stress copy 3]
+- label: Multi-Modal Models (Extended Generation 2) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2884,7 +2884,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/generation/test_common.py -m 'split(group=0) and not core_model'
 
-- label: Multi-Modal Models (Extended Generation 3) # TBD [stress copy 3]
+- label: Multi-Modal Models (Extended Generation 3) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2897,7 +2897,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/generation/test_common.py -m 'split(group=1) and not core_model'
 
-- label: "Multi-Modal Models (Standard) 1: qwen2" # TBD [stress copy 3]
+- label: "Multi-Modal Models (Standard) 1: qwen2 [stress copy 3]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2912,7 +2912,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_common.py -m core_model -k "qwen2"
   - pytest -v -s models/multimodal/generation/test_ultravox.py -m core_model
 
-- label: "Multi-Modal Models (Standard) 3: llava + qwen2_vl" # TBD [stress copy 3]
+- label: "Multi-Modal Models (Standard) 3: llava + qwen2_vl [stress copy 3]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2928,7 +2928,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_common.py -m core_model -k "not qwen2 and not qwen3 and not gemma"
   - pytest -v -s models/multimodal/generation/test_qwen2_vl.py -m core_model
 
-- label: "Multi-Modal Models (Standard) 4: other + whisper" # TBD [stress copy 3]
+- label: "Multi-Modal Models (Standard) 4: other + whisper [stress copy 3]" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2944,7 +2944,7 @@ steps:
   - pytest -v -s models/multimodal/generation/test_memory_leak.py -m core_model
   - cd .. && VLLM_WORKER_MULTIPROC_METHOD=spawn pytest -v -s tests/models/multimodal/generation/test_whisper.py -m core_model
 
-- label: Multi-Modal Processor # 1h 42m [stress copy 3]
+- label: Multi-Modal Processor [stress copy 3] # 1h 42m
   timeout_in_minutes: 138
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2958,7 +2958,7 @@ steps:
   - pip install git+https://github.com/TIGER-AI-Lab/Mantis.git
   - pytest -v -s models/multimodal/processing/test_tensor_schema.py
 
-- label: Quantized Models Test # TBD [stress copy 3]
+- label: Quantized Models Test [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2972,7 +2972,7 @@ steps:
   commands:
   - pytest -v -s models/quantization
 
-- label: Transformers Nightly Models # TBD [stress copy 3]
+- label: Transformers Nightly Models [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3001,7 +3001,7 @@ steps:
 
 #-------------------------------------------------------  mi325 · quantization  --------------------------------------------------------#
 
-- label: Quantization # TBD [stress copy 3]
+- label: Quantization [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3027,7 +3027,7 @@ steps:
 
 #-----------------------------------------------------------  mi325 · rocm  ------------------------------------------------------------#
 
-- label: ROCm AITER Ops Test # TBD [stress copy 3]
+- label: ROCm AITER Ops Test [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3044,7 +3044,7 @@ steps:
 
 #---------------------------------------------------------  mi325 · samplers  ----------------------------------------------------------#
 
-- label: Samplers Test # TBD [stress copy 3]
+- label: Samplers Test [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3064,7 +3064,7 @@ steps:
 
 #------------------------------------------------------------  mi325 · misc  ------------------------------------------------------------#
 
-- label: Python-only Installation # TBD [stress copy 3]
+- label: Python-only Installation [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3077,7 +3077,7 @@ steps:
   commands:
   - bash standalone_tests/python_only_compile.sh
 
-- label: Regression # TBD [stress copy 3]
+- label: Regression [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3091,7 +3091,7 @@ steps:
 
 #---------------------------------------------------------  mi325 · ray_compat  ---------------------------------------------------------#
 
-- label: Ray Dependency Compatibility Check # TBD [stress copy 3]
+- label: Ray Dependency Compatibility Check [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3105,7 +3105,7 @@ steps:
 
 #------------------------------------------------------------  mi325 · v1  -------------------------------------------------------------#
 
-- label: Acceptance Length Test (Large Models) # TBD [stress copy 3]
+- label: Acceptance Length Test (Large Models) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3120,7 +3120,7 @@ steps:
   - export VLLM_ALLOW_INSECURE_SERIALIZATION=1
   - pytest -v -s v1/spec_decode/test_acceptance_length.py -m slow_test
 
-- label: e2e Core (1 GPU) # TBD [stress copy 3]
+- label: e2e Core (1 GPU) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3133,7 +3133,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/general --ignore v1/e2e/general/test_async_scheduling.py
 
-- label: e2e Scheduling (1 GPU) # TBD [stress copy 3]
+- label: e2e Scheduling (1 GPU) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3146,7 +3146,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/general/test_async_scheduling.py
 
-- label: Engine (1 GPU) # TBD [stress copy 3]
+- label: Engine (1 GPU) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3160,7 +3160,7 @@ steps:
   - pytest -v -s v1/engine/test_preprocess_error_handling.py
   - pytest -v -s v1/engine --ignore v1/engine/test_preprocess_error_handling.py
 
-- label: Spec Decode Draft Model # TBD [stress copy 3]
+- label: Spec Decode Draft Model [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3177,7 +3177,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "draft_model or no_sync or batch_inference"
 
-- label: Spec Decode Eagle # TBD [stress copy 3]
+- label: Spec Decode Eagle [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3193,7 +3193,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "eagle_correctness"
 
-- label: Spec Decode Ngram + Suffix # TBD [stress copy 3]
+- label: Spec Decode Ngram + Suffix [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3210,7 +3210,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "ngram or suffix"
 
-- label: Spec Decode Speculators + MTP # TBD [stress copy 3]
+- label: Spec Decode Speculators + MTP [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3228,7 +3228,7 @@ steps:
   commands:
   - pytest -v -s v1/e2e/spec_decode -k "speculators or mtp_correctness"
 
-- label: V1 attention (H100-MI300) # TBD [stress copy 3]
+- label: V1 attention (H100-MI300) [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3244,7 +3244,7 @@ steps:
   commands:
   - pytest -v -s v1/attention
 
-- label: V1 Core + KV + Metrics # TBD [stress copy 3]
+- label: V1 Core + KV + Metrics [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3270,7 +3270,7 @@ steps:
   # - export HSA_NO_SCRATCH_RECLAIM=1
   - pytest -v -s entrypoints/openai/correctness/test_lmeval.py::test_lm_eval_accuracy_v1_engine
 
-- label: V1 Sample + Logits # TBD [stress copy 3]
+- label: V1 Sample + Logits [stress copy 3] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3290,7 +3290,7 @@ steps:
   - pytest -v -s v1/test_request.py
   - pytest -v -s v1/test_outputs.py
 
-- label: Basic Correctness # TBD [stress copy 4]
+- label: Basic Correctness [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3308,7 +3308,7 @@ steps:
   - pytest -v -s basic_correctness/test_basic_correctness.py
   - pytest -v -s basic_correctness/test_cpu_offload.py
 
-- label: Benchmarks # TBD [stress copy 4]
+- label: Benchmarks [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3320,7 +3320,7 @@ steps:
   commands:
   - bash scripts/run-benchmarks.sh
 
-- label: Benchmarks CLI Test # TBD [stress copy 4]
+- label: Benchmarks CLI Test [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3333,7 +3333,7 @@ steps:
 
 #----------------------------------------------------------  mi325 · compile  ----------------------------------------------------------#
 
-- label: Fusion E2E Config Sweep (H100-MI300) # TBD [stress copy 4]
+- label: Fusion E2E Config Sweep (H100-MI300) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3353,7 +3353,7 @@ steps:
   - rocm-smi
   - pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k "llama-3"
 
-- label: Fusion E2E Quick (H100-MI300) # TBD [stress copy 4]
+- label: Fusion E2E Quick (H100-MI300) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3374,7 +3374,7 @@ steps:
   # Different from CUDA, Qwen requires +rms_norm and +quant_fp8 as rms+quant fusion is only supported on AITER
   - "pytest -v -s tests/compile/fusions_e2e/test_tp1_quant.py -k 'inductor_partition and +rms_norm and +quant_fp8 and qwen3'"
 
-- label: PyTorch Compilation Passes Unit Tests # TBD [stress copy 4]
+- label: PyTorch Compilation Passes Unit Tests [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3385,7 +3385,7 @@ steps:
   commands:
   - pytest -s -v compile/passes --ignore compile/passes/distributed
 
-- label: Pytorch Nightly Dependency Override Check # TBD [stress copy 4]
+- label: Pytorch Nightly Dependency Override Check [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3398,7 +3398,7 @@ steps:
   commands:
   - bash standalone_tests/pytorch_nightly_dependency.sh
 
-- label: Platform Tests (CUDA) # TBD [stress copy 4]
+- label: Platform Tests (CUDA) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3412,7 +3412,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · detokenizer  --------------------------------------------------------#
 
-- label: Async Engine, Inputs, Utils, Worker # TBD [stress copy 4]
+- label: Async Engine, Inputs, Utils, Worker [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3429,7 +3429,7 @@ steps:
 
 #--------------------------------------------------------  mi325 · distributed  --------------------------------------------------------#
 
-- label: EPLB Algorithm # TBD [stress copy 4]
+- label: EPLB Algorithm [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3442,7 +3442,7 @@ steps:
   - pytest -v -s distributed/test_eplb_algo.py
   - pytest -v -s distributed/test_eplb_utils.py
 
-- label: Entrypoints Integration (API Server 2) # TBD [stress copy 4]
+- label: Entrypoints Integration (API Server 2) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3460,7 +3460,7 @@ steps:
   - PYTHONPATH=/vllm-workspace pytest -v -s entrypoints/rpc
   - pytest -v -s tool_use
 
-- label: Entrypoints Integration (API Server openai - Part 1) # TBD [stress copy 4]
+- label: Entrypoints Integration (API Server openai - Part 1) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3475,7 +3475,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/chat_completion --ignore=entrypoints/openai/chat_completion/test_chat_with_tool_reasoning.py --ignore=entrypoints/openai/chat_completion/test_oot_registration.py
 
-- label: Entrypoints Integration (API Server openai - Part 2) # TBD [stress copy 4]
+- label: Entrypoints Integration (API Server openai - Part 2) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3492,7 +3492,7 @@ steps:
   - pytest -v -s entrypoints/openai/speech_to_text/
   - pytest -v -s entrypoints/test_chat_utils.py
 
-- label: Entrypoints Integration (API Server openai - Part 3) # TBD [stress copy 4]
+- label: Entrypoints Integration (API Server openai - Part 3) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3507,7 +3507,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai --ignore=entrypoints/openai/chat_completion --ignore=entrypoints/openai/completion --ignore=entrypoints/openai/speech_to_text/ --ignore=entrypoints/openai/correctness/ --ignore=entrypoints/openai/tool_parsers/ --ignore=entrypoints/openai/responses --ignore=entrypoints/openai/test_multi_api_servers.py
 
-- label: Entrypoints Integration (LLM) # TBD [stress copy 4]
+- label: Entrypoints Integration (LLM) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3525,7 +3525,7 @@ steps:
   - pytest -v -s entrypoints/llm/test_generate.py
   - pytest -v -s entrypoints/offline_mode
 
-- label: Entrypoints Integration (Pooling) # TBD [stress copy 4]
+- label: Entrypoints Integration (Pooling) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3539,7 +3539,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/pooling
 
-- label: Entrypoints Integration (Responses API) # TBD [stress copy 4]
+- label: Entrypoints Integration (Responses API) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3553,7 +3553,7 @@ steps:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/responses
 
-- label: Entrypoints Unit Tests # TBD [stress copy 4]
+- label: Entrypoints Unit Tests [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3567,7 +3567,7 @@ steps:
   - pytest -v -s entrypoints/openai/tool_parsers
   - pytest -v -s entrypoints/ --ignore=entrypoints/llm --ignore=entrypoints/rpc --ignore=entrypoints/sleep --ignore=entrypoints/serve/instrumentator --ignore=entrypoints/openai --ignore=entrypoints/offline_mode --ignore=entrypoints/test_chat_utils.py  --ignore=entrypoints/pooling
 
-- label: OpenAI API correctness # TBD [stress copy 4]
+- label: OpenAI API correctness [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3588,7 +3588,7 @@ steps:
 
 #-----------------------------------------------------------  mi325 · evals  -----------------------------------------------------------#
 
-- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) # TBD [stress copy 4]
+- label: DeepSeek V2-Lite Prefetch Offload Accuracy (H100-MI300) [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -3608,7 +3608,7 @@ steps:
   commands:
   - bash .buildkite/scripts/scheduled_integration_test/deepseek_v2_lite_prefetch_offload.sh 0.25 200 8030
 
-- label: LM Eval Small Models # TBD [stress copy 4]
+- label: LM Eval Small Models [stress copy 4] # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
