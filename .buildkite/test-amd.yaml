@@ -111,7 +111,7 @@ steps:
 #                                                                                                                                       #
 #########################################################################################################################################
 
-- label: Engine # TBD [1/30]
+- label: Engine stress copy 1 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -129,7 +129,7 @@ steps:
 
 
 
-- label: Engine # TBD [2/30]
+- label: Engine stress copy 2 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -147,7 +147,7 @@ steps:
 
 
 
-- label: Engine # TBD [3/30]
+- label: Engine stress copy 3 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -165,7 +165,7 @@ steps:
 
 
 
-- label: Engine # TBD [4/30]
+- label: Engine stress copy 4 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -183,7 +183,7 @@ steps:
 
 
 
-- label: Engine # TBD [5/30]
+- label: Engine stress copy 5 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -201,7 +201,7 @@ steps:
 
 
 
-- label: Engine # TBD [6/30]
+- label: Engine stress copy 6 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -219,7 +219,7 @@ steps:
 
 
 
-- label: Engine # TBD [7/30]
+- label: Engine stress copy 7 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -237,7 +237,7 @@ steps:
 
 
 
-- label: Engine # TBD [8/30]
+- label: Engine stress copy 8 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -255,7 +255,7 @@ steps:
 
 
 
-- label: Engine # TBD [9/30]
+- label: Engine stress copy 9 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -273,7 +273,7 @@ steps:
 
 
 
-- label: Engine # TBD [10/30]
+- label: Engine stress copy 10 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -291,7 +291,7 @@ steps:
 
 
 
-- label: Engine # TBD [11/30]
+- label: Engine stress copy 11 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -309,7 +309,7 @@ steps:
 
 
 
-- label: Engine # TBD [12/30]
+- label: Engine stress copy 12 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -327,7 +327,7 @@ steps:
 
 
 
-- label: Engine # TBD [13/30]
+- label: Engine stress copy 13 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -345,7 +345,7 @@ steps:
 
 
 
-- label: Engine # TBD [14/30]
+- label: Engine stress copy 14 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -363,7 +363,7 @@ steps:
 
 
 
-- label: Engine # TBD [15/30]
+- label: Engine stress copy 15 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -381,7 +381,7 @@ steps:
 
 
 
-- label: Engine # TBD [16/30]
+- label: Engine stress copy 16 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -399,7 +399,7 @@ steps:
 
 
 
-- label: Engine # TBD [17/30]
+- label: Engine stress copy 17 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -417,7 +417,7 @@ steps:
 
 
 
-- label: Engine # TBD [18/30]
+- label: Engine stress copy 18 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -435,7 +435,7 @@ steps:
 
 
 
-- label: Engine # TBD [19/30]
+- label: Engine stress copy 19 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -453,7 +453,7 @@ steps:
 
 
 
-- label: Engine # TBD [20/30]
+- label: Engine stress copy 20 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -471,7 +471,7 @@ steps:
 
 
 
-- label: Engine # TBD [21/30]
+- label: Engine stress copy 21 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -489,7 +489,7 @@ steps:
 
 
 
-- label: Engine # TBD [22/30]
+- label: Engine stress copy 22 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -507,7 +507,7 @@ steps:
 
 
 
-- label: Engine # TBD [23/30]
+- label: Engine stress copy 23 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -525,7 +525,7 @@ steps:
 
 
 
-- label: Engine # TBD [24/30]
+- label: Engine stress copy 24 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -543,7 +543,7 @@ steps:
 
 
 
-- label: Engine # TBD [25/30]
+- label: Engine stress copy 25 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -561,7 +561,7 @@ steps:
 
 
 
-- label: Engine # TBD [26/30]
+- label: Engine stress copy 26 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -579,7 +579,7 @@ steps:
 
 
 
-- label: Engine # TBD [27/30]
+- label: Engine stress copy 27 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -597,7 +597,7 @@ steps:
 
 
 
-- label: Engine # TBD [28/30]
+- label: Engine stress copy 28 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -615,7 +615,7 @@ steps:
 
 
 
-- label: Engine # TBD [29/30]
+- label: Engine stress copy 29 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -633,7 +633,7 @@ steps:
 
 
 
-- label: Engine # TBD [30/30]
+- label: Engine stress copy 30 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -651,7 +651,7 @@ steps:
 
 
 
-- label: Language Models Test (Extended Generation) # TBD [1/30]
+- label: Language Models Test (Extended Generation) stress copy 1 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -665,7 +665,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [2/30]
+- label: Language Models Test (Extended Generation) stress copy 2 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -679,7 +679,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [3/30]
+- label: Language Models Test (Extended Generation) stress copy 3 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -693,7 +693,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [4/30]
+- label: Language Models Test (Extended Generation) stress copy 4 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -707,7 +707,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [5/30]
+- label: Language Models Test (Extended Generation) stress copy 5 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -721,7 +721,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [6/30]
+- label: Language Models Test (Extended Generation) stress copy 6 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -735,7 +735,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [7/30]
+- label: Language Models Test (Extended Generation) stress copy 7 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -749,7 +749,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [8/30]
+- label: Language Models Test (Extended Generation) stress copy 8 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -763,7 +763,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [9/30]
+- label: Language Models Test (Extended Generation) stress copy 9 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -777,7 +777,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [10/30]
+- label: Language Models Test (Extended Generation) stress copy 10 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -791,7 +791,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [11/30]
+- label: Language Models Test (Extended Generation) stress copy 11 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -805,7 +805,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [12/30]
+- label: Language Models Test (Extended Generation) stress copy 12 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -819,7 +819,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [13/30]
+- label: Language Models Test (Extended Generation) stress copy 13 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -833,7 +833,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [14/30]
+- label: Language Models Test (Extended Generation) stress copy 14 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -847,7 +847,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [15/30]
+- label: Language Models Test (Extended Generation) stress copy 15 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -861,7 +861,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [16/30]
+- label: Language Models Test (Extended Generation) stress copy 16 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -875,7 +875,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [17/30]
+- label: Language Models Test (Extended Generation) stress copy 17 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -889,7 +889,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [18/30]
+- label: Language Models Test (Extended Generation) stress copy 18 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -903,7 +903,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [19/30]
+- label: Language Models Test (Extended Generation) stress copy 19 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -917,7 +917,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [20/30]
+- label: Language Models Test (Extended Generation) stress copy 20 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -931,7 +931,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [21/30]
+- label: Language Models Test (Extended Generation) stress copy 21 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -945,7 +945,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [22/30]
+- label: Language Models Test (Extended Generation) stress copy 22 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -959,7 +959,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [23/30]
+- label: Language Models Test (Extended Generation) stress copy 23 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -973,7 +973,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [24/30]
+- label: Language Models Test (Extended Generation) stress copy 24 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -987,7 +987,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [25/30]
+- label: Language Models Test (Extended Generation) stress copy 25 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1001,7 +1001,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [26/30]
+- label: Language Models Test (Extended Generation) stress copy 26 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1015,7 +1015,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [27/30]
+- label: Language Models Test (Extended Generation) stress copy 27 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1029,7 +1029,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [28/30]
+- label: Language Models Test (Extended Generation) stress copy 28 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1043,7 +1043,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [29/30]
+- label: Language Models Test (Extended Generation) stress copy 29 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1057,7 +1057,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Test (Extended Generation) # TBD [30/30]
+- label: Language Models Test (Extended Generation) stress copy 30 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1071,7 +1071,7 @@ steps:
   - pytest -v -s models/language/generation -m '(not core_model) and (not hybrid_model)'
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [1/30]
+- label: Language Models Tests (Hybrid) %N stress copy 1 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1088,7 +1088,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [2/30]
+- label: Language Models Tests (Hybrid) %N stress copy 2 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1105,7 +1105,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [3/30]
+- label: Language Models Tests (Hybrid) %N stress copy 3 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1122,7 +1122,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [4/30]
+- label: Language Models Tests (Hybrid) %N stress copy 4 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1139,7 +1139,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [5/30]
+- label: Language Models Tests (Hybrid) %N stress copy 5 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1156,7 +1156,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [6/30]
+- label: Language Models Tests (Hybrid) %N stress copy 6 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1173,7 +1173,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [7/30]
+- label: Language Models Tests (Hybrid) %N stress copy 7 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1190,7 +1190,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [8/30]
+- label: Language Models Tests (Hybrid) %N stress copy 8 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1207,7 +1207,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [9/30]
+- label: Language Models Tests (Hybrid) %N stress copy 9 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1224,7 +1224,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [10/30]
+- label: Language Models Tests (Hybrid) %N stress copy 10 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1241,7 +1241,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [11/30]
+- label: Language Models Tests (Hybrid) %N stress copy 11 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1258,7 +1258,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [12/30]
+- label: Language Models Tests (Hybrid) %N stress copy 12 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1275,7 +1275,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [13/30]
+- label: Language Models Tests (Hybrid) %N stress copy 13 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1292,7 +1292,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [14/30]
+- label: Language Models Tests (Hybrid) %N stress copy 14 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1309,7 +1309,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [15/30]
+- label: Language Models Tests (Hybrid) %N stress copy 15 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1326,7 +1326,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [16/30]
+- label: Language Models Tests (Hybrid) %N stress copy 16 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1343,7 +1343,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [17/30]
+- label: Language Models Tests (Hybrid) %N stress copy 17 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1360,7 +1360,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [18/30]
+- label: Language Models Tests (Hybrid) %N stress copy 18 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1377,7 +1377,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [19/30]
+- label: Language Models Tests (Hybrid) %N stress copy 19 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1394,7 +1394,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [20/30]
+- label: Language Models Tests (Hybrid) %N stress copy 20 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1411,7 +1411,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [21/30]
+- label: Language Models Tests (Hybrid) %N stress copy 21 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1428,7 +1428,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [22/30]
+- label: Language Models Tests (Hybrid) %N stress copy 22 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1445,7 +1445,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [23/30]
+- label: Language Models Tests (Hybrid) %N stress copy 23 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1462,7 +1462,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [24/30]
+- label: Language Models Tests (Hybrid) %N stress copy 24 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1479,7 +1479,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [25/30]
+- label: Language Models Tests (Hybrid) %N stress copy 25 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1496,7 +1496,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [26/30]
+- label: Language Models Tests (Hybrid) %N stress copy 26 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1513,7 +1513,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [27/30]
+- label: Language Models Tests (Hybrid) %N stress copy 27 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1530,7 +1530,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [28/30]
+- label: Language Models Tests (Hybrid) %N stress copy 28 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1547,7 +1547,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [29/30]
+- label: Language Models Tests (Hybrid) %N stress copy 29 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1564,7 +1564,7 @@ steps:
 
 
 
-- label: Language Models Tests (Hybrid) %N # TBD [30/30]
+- label: Language Models Tests (Hybrid) %N stress copy 30 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1581,7 +1581,7 @@ steps:
 
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [1/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 1 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1594,7 +1594,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [2/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 2 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1607,7 +1607,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [3/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 3 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1620,7 +1620,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [4/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 4 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1633,7 +1633,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [5/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 5 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1646,7 +1646,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [6/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 6 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1659,7 +1659,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [7/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 7 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1672,7 +1672,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [8/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 8 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1685,7 +1685,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [9/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 9 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1698,7 +1698,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [10/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 10 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1711,7 +1711,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [11/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 11 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1724,7 +1724,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [12/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 12 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1737,7 +1737,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [13/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 13 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1750,7 +1750,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [14/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 14 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1763,7 +1763,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [15/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 15 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1776,7 +1776,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [16/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 16 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1789,7 +1789,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [17/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 17 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1802,7 +1802,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [18/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 18 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1815,7 +1815,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [19/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 19 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1828,7 +1828,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [20/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 20 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1841,7 +1841,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [21/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 21 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1854,7 +1854,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [22/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 22 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1867,7 +1867,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [23/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 23 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1880,7 +1880,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [24/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 24 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1893,7 +1893,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [25/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 25 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1906,7 +1906,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [26/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 26 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1919,7 +1919,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [27/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 27 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1932,7 +1932,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [28/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 28 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1945,7 +1945,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [29/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 29 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1958,7 +1958,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: Multi-Modal Models (Extended Pooling) # TBD [30/30]
+- label: Multi-Modal Models (Extended Pooling) stress copy 30 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1971,7 +1971,7 @@ steps:
   - pytest -v -s models/multimodal/pooling -m 'not core_model'
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [1/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 1 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -1986,7 +1986,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [2/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 2 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2001,7 +2001,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [3/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 3 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2016,7 +2016,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [4/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 4 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2031,7 +2031,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [5/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 5 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2046,7 +2046,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [6/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 6 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2061,7 +2061,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [7/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 7 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2076,7 +2076,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [8/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 8 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2091,7 +2091,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [9/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 9 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2106,7 +2106,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [10/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 10 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2121,7 +2121,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [11/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 11 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2136,7 +2136,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [12/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 12 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2151,7 +2151,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [13/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 13 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2166,7 +2166,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [14/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 14 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2181,7 +2181,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [15/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 15 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2196,7 +2196,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [16/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 16 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2211,7 +2211,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [17/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 17 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2226,7 +2226,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [18/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 18 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2241,7 +2241,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [19/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 19 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2256,7 +2256,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [20/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 20 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2271,7 +2271,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [21/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 21 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2286,7 +2286,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [22/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 22 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2301,7 +2301,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [23/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 23 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2316,7 +2316,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [24/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 24 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2331,7 +2331,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [25/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 25 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2346,7 +2346,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [26/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 26 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2361,7 +2361,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [27/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 27 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2376,7 +2376,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [28/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 28 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2391,7 +2391,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [29/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 29 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2406,7 +2406,7 @@ steps:
 
 
 
-- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma [30/30]" # TBD
+- label: "Multi-Modal Models (Standard) 2: qwen3 + gemma stress copy 30 of 30" # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2421,7 +2421,7 @@ steps:
 
 
 
-- label: V1 Spec Decode # TBD [1/30]
+- label: V1 Spec Decode stress copy 1 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2432,7 +2432,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [2/30]
+- label: V1 Spec Decode stress copy 2 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2443,7 +2443,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [3/30]
+- label: V1 Spec Decode stress copy 3 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2454,7 +2454,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [4/30]
+- label: V1 Spec Decode stress copy 4 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2465,7 +2465,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [5/30]
+- label: V1 Spec Decode stress copy 5 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2476,7 +2476,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [6/30]
+- label: V1 Spec Decode stress copy 6 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2487,7 +2487,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [7/30]
+- label: V1 Spec Decode stress copy 7 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2498,7 +2498,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [8/30]
+- label: V1 Spec Decode stress copy 8 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2509,7 +2509,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [9/30]
+- label: V1 Spec Decode stress copy 9 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2520,7 +2520,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [10/30]
+- label: V1 Spec Decode stress copy 10 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2531,7 +2531,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [11/30]
+- label: V1 Spec Decode stress copy 11 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2542,7 +2542,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [12/30]
+- label: V1 Spec Decode stress copy 12 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2553,7 +2553,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [13/30]
+- label: V1 Spec Decode stress copy 13 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2564,7 +2564,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [14/30]
+- label: V1 Spec Decode stress copy 14 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2575,7 +2575,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [15/30]
+- label: V1 Spec Decode stress copy 15 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2586,7 +2586,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [16/30]
+- label: V1 Spec Decode stress copy 16 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2597,7 +2597,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [17/30]
+- label: V1 Spec Decode stress copy 17 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2608,7 +2608,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [18/30]
+- label: V1 Spec Decode stress copy 18 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2619,7 +2619,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [19/30]
+- label: V1 Spec Decode stress copy 19 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2630,7 +2630,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [20/30]
+- label: V1 Spec Decode stress copy 20 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2641,7 +2641,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [21/30]
+- label: V1 Spec Decode stress copy 21 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2652,7 +2652,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [22/30]
+- label: V1 Spec Decode stress copy 22 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2663,7 +2663,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [23/30]
+- label: V1 Spec Decode stress copy 23 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2674,7 +2674,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [24/30]
+- label: V1 Spec Decode stress copy 24 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2685,7 +2685,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [25/30]
+- label: V1 Spec Decode stress copy 25 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2696,7 +2696,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [26/30]
+- label: V1 Spec Decode stress copy 26 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2707,7 +2707,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [27/30]
+- label: V1 Spec Decode stress copy 27 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2718,7 +2718,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [28/30]
+- label: V1 Spec Decode stress copy 28 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2729,7 +2729,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [29/30]
+- label: V1 Spec Decode stress copy 29 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2740,7 +2740,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: V1 Spec Decode # TBD [30/30]
+- label: V1 Spec Decode stress copy 30 of 30 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_1
@@ -2751,7 +2751,7 @@ steps:
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
 
-- label: Distributed Compile + RPC Tests (2 GPUs) # TBD [1/4]
+- label: Distributed Compile + RPC Tests (2 GPUs) stress copy 1 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2776,7 +2776,7 @@ steps:
 
 
 
-- label: Distributed Compile + RPC Tests (2 GPUs) # TBD [2/4]
+- label: Distributed Compile + RPC Tests (2 GPUs) stress copy 2 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2801,7 +2801,7 @@ steps:
 
 
 
-- label: Distributed Compile + RPC Tests (2 GPUs) # TBD [3/4]
+- label: Distributed Compile + RPC Tests (2 GPUs) stress copy 3 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2826,7 +2826,7 @@ steps:
 
 
 
-- label: Distributed Compile + RPC Tests (2 GPUs) # TBD [4/4]
+- label: Distributed Compile + RPC Tests (2 GPUs) stress copy 4 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2851,7 +2851,7 @@ steps:
 
 
 
-- label: Distributed Torchrun + Shutdown Tests (2 GPUs) # TBD [1/4]
+- label: Distributed Torchrun + Shutdown Tests (2 GPUs) stress copy 1 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2875,7 +2875,7 @@ steps:
   - pytest -v -s v1/worker/test_worker_memory_snapshot.py
 
 
-- label: Distributed Torchrun + Shutdown Tests (2 GPUs) # TBD [2/4]
+- label: Distributed Torchrun + Shutdown Tests (2 GPUs) stress copy 2 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2899,7 +2899,7 @@ steps:
   - pytest -v -s v1/worker/test_worker_memory_snapshot.py
 
 
-- label: Distributed Torchrun + Shutdown Tests (2 GPUs) # TBD [3/4]
+- label: Distributed Torchrun + Shutdown Tests (2 GPUs) stress copy 3 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2923,7 +2923,7 @@ steps:
   - pytest -v -s v1/worker/test_worker_memory_snapshot.py
 
 
-- label: Distributed Torchrun + Shutdown Tests (2 GPUs) # TBD [4/4]
+- label: Distributed Torchrun + Shutdown Tests (2 GPUs) stress copy 4 of 4 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_2
@@ -2947,7 +2947,7 @@ steps:
   - pytest -v -s v1/worker/test_worker_memory_snapshot.py
 
 
-- label: Distributed Compile + Comm (4 GPUs) # TBD [1/2]
+- label: Distributed Compile + Comm (4 GPUs) stress copy 1 of 2 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_4
@@ -2970,7 +2970,7 @@ steps:
 
 
 
-- label: Distributed Compile + Comm (4 GPUs) # TBD [2/2]
+- label: Distributed Compile + Comm (4 GPUs) stress copy 2 of 2 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_4
@@ -2993,7 +2993,7 @@ steps:
 
 
 
-- label: LM Eval Large Models (4xH100-4xMI325) # TBD [1/2]
+- label: LM Eval Large Models (4xH100-4xMI325) stress copy 1 of 2 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_4
@@ -3015,7 +3015,7 @@ steps:
 
 
 
-- label: LM Eval Large Models (4xH100-4xMI325) # TBD [2/2]
+- label: LM Eval Large Models (4xH100-4xMI325) stress copy 2 of 2 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_4
@@ -3037,7 +3037,7 @@ steps:
 
 
 
-- label: Distributed Tests (8xH100-8xMI325) # TBD [1/1]
+- label: Distributed Tests (8xH100-8xMI325) stress copy 1 of 1 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_8
@@ -3057,7 +3057,7 @@ steps:
 
 
 
-- label: ROCm LM Eval Large Models (8 GPUs) # TBD [1/1]
+- label: ROCm LM Eval Large Models (8 GPUs) stress copy 1 of 1 # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi325]
   agent_pool: mi325_8
