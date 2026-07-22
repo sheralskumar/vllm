@@ -1,7 +1,6 @@
 # Dragonfly-only override for branch dragonfly-qwen-only.
-# upstream-vllm-amd uploads the full test-amd.yaml; the main file has ~190 GPU
-# steps (shown as "Input required" when optional). This branch replaces that
-# list with a single GSM8K job for amd_mi300_dragon_1.
+# Single GSM8K job on amd_mi300_dragon_1. No source_file_dependencies so
+# manual Buildkite rebuilds always include this step (empty deps = always run).
 #
 # Fed into test-template-amd.j2 in buildkite-ci to generate the pipeline.
 
@@ -9,13 +8,10 @@ steps:
 
 - label: Dragonfly GSM8K Eval (Qwen3-30B-A3B-Thinking-2507-FP8, MI300)
   timeout_in_minutes: 180
-  mirror_hardwares: [amdmi300]
+  mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   dind: false
   agent_pool: mi300_dragon_1
   working_dir: "/vllm-workspace/tests"
-  source_file_dependencies:
-  - .buildkite/dragonfly/
-  - tests/evals/gsm8k/configs/Qwen3-30B-A3B-Thinking-2507-FP8.yaml
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=../.buildkite/dragonfly/gsm8k-models.txt
