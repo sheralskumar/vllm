@@ -1,0 +1,3 @@
+# Dragonfly HF cache validation on amd_mi300_dragon_1 (1 GPU, GSM8K).
+# Model: amd/Qwen3-30B-A3B-Thinking-2507-FP8 (ROCm-native FP8 checkpoint).
+../../tests/evals/gsm8k/configs/Qwen3-30B-A3B-Thinking-2507-FP8.yaml

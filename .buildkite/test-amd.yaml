@@ -1094,7 +1094,7 @@ steps:
   commands:
   - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-small.txt
 
-- label: Dragonfly GSM8K Eval (amd/Qwen3-30B-A3B-Thinking-2507-FP8, MI300) # TBD
+- label: Dragonfly GSM8K Eval (Qwen3-30B-A3B-Thinking-2507-FP8, MI300) # TBD
   timeout_in_minutes: 180
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx942nightly, amdmi300]
   dind: false
@@ -1110,11 +1110,11 @@ steps:
   - vllm/v1/attention/selector.py
   - vllm/_aiter_ops.py
   - vllm/platforms/rocm.py
-  - tests/evals/gsm8k/configs/models-dragonfly.txt
+  - .buildkite/dragonfly/gsm8k-models.txt
   - tests/evals/gsm8k/configs/Qwen3-30B-A3B-Thinking-2507-FP8.yaml
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
-  - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=configs/models-dragonfly.txt
+  - pytest -s -v evals/gsm8k/test_gsm8k_correctness.py --config-list-file=../.buildkite/dragonfly/gsm8k-models.txt
 
 - label: MRCR Eval Small Models # TBD
   timeout_in_minutes: 180
