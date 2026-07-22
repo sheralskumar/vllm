@@ -10,58 +10,31 @@ import ast
 import asyncio
 import json
 import os
-import tempfile
 import time
-from collections.abc import Generator
 
 import aiohttp
 import numpy as np
 import regex as re
-import requests
 from tqdm.asyncio import tqdm
 
 INVALID = -9999999
 
 
-def download_and_cache_file(url: str, filename: str | None = None) -> str:
-    """Download and cache a file from a URL."""
-    if filename is None:
-        filename = os.path.join(tempfile.gettempdir(), url.split("/")[-1])
-
-    if os.path.exists(filename):
-        return filename
-
-    print(f"Downloading from {url} to {filename}")
-    response = requests.get(url, stream=True)
-    response.raise_for_status()
-
-    with open(filename, "wb") as f:
-        for chunk in response.iter_content(chunk_size=1024):
-            f.write(chunk)
-
-    return filename
-
-
 def load_gsm8k_data() -> tuple[list[dict], list[dict]]:
-    """Load GSM8K train and test data"""
-    train_url = "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/train.jsonl"
-    test_url = "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl"
+    """Load GSM8K train and test data from HuggingFace."""
+    from datasets import load_dataset
 
-    train_file = download_and_cache_file(train_url)
-    test_file = download_and_cache_file(test_url)
+    hf_endpoint = os.environ.get("HF_ENDPOINT")
+    if hf_endpoint:
+        print(f"Loading GSM8K from HuggingFace (openai/gsm8k) via {hf_endpoint}")
+    else:
+        print("Loading GSM8K from HuggingFace (openai/gsm8k)")
 
-    train_data = list(read_jsonl(train_file))
-    test_data = list(read_jsonl(test_file))
-
+    train_ds = load_dataset("openai/gsm8k", "main", split="train")
+    test_ds = load_dataset("openai/gsm8k", "main", split="test")
+    train_data = [{"question": row["question"], "answer": row["answer"]} for row in train_ds]
+    test_data = [{"question": row["question"], "answer": row["answer"]} for row in test_ds]
     return train_data, test_data
-
-
-def read_jsonl(filename: str) -> Generator[dict, None, None]:
-    """Read a JSONL file."""
-    with open(filename) as fin:
-        for line in fin:
-            if not line.startswith("#"):
-                yield json.loads(line)
 
 
 def get_answer_value(answer_str: str) -> int:
