@@ -95,12 +95,7 @@ resolve_expected_rocm_device_count() {
     echo "${logical_gpus}"
     return 1
   fi
-
-  if is_dpx_gpu_mode; then
-    echo $((logical_gpus * 2))
-    return 0
-  fi
-
+  
   echo "${logical_gpus}"
 }
 
