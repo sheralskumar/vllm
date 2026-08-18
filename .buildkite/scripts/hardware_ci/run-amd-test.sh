@@ -83,6 +83,48 @@ report_docker_usage() {
   docker system df || true
 }
 
+is_dpx_gpu_mode() {
+  [[ "${VLLM_CI_GPU_MODE:-}" == "dpx" \
+    || "${BUILDKITE_AGENT_META_DATA_QUEUE:-}" == "amd_dpx" ]]
+}
+
+resolve_expected_rocm_device_count() {
+  local logical_gpus="${1:-1}"
+
+  if [[ ! "${logical_gpus}" =~ ^[0-9]+$ ]]; then
+    echo "${logical_gpus}"
+    return 1
+  fi
+
+  if is_dpx_gpu_mode; then
+    echo $((logical_gpus * 2))
+    return 0
+  fi
+
+  echo "${logical_gpus}"
+}
+
+collect_amd_smi_diagnostics() {
+  local log_file=$1
+  local probe_deadline=$2
+
+  run_amd_diagnostic "${log_file}" "${probe_deadline}" amd-smi version
+  # Bus data identifies a card within the public node without publishing its
+  # persistent UUID, serial number, or process list.
+  run_amd_diagnostic "${log_file}" "${probe_deadline}" amd-smi static -b -g all
+  # MI350X DPX stacks may not support -x/-v metric flags or bad-pages.
+  run_amd_diagnostic "${log_file}" "${probe_deadline}" amd-smi metric -e -k -P -g all
+  if amd-smi --help 2>/dev/null | grep -q 'bad-pages'; then
+    run_amd_diagnostic "${log_file}" "${probe_deadline}" \
+      amd-smi bad-pages -p -r -u -g all
+  else
+    echo "amd-smi bad-pages not supported on this system; skipping." \
+      | tee -a "${log_file}"
+  fi
+  run_amd_diagnostic "${log_file}" "${probe_deadline}" amd-smi metric -p -t -u -m -g all
+  run_amd_diagnostic "${log_file}" "${probe_deadline}" amd-smi xgmi -l -g all
+}
+
 clear_ci_orchestration_env() {
   unset -v \
     VLLM_TEST_GROUP_NAME \
@@ -534,16 +576,23 @@ initialize_native_environment() {
 }
 
 run_native_preflight() {
-  local expected_gpus="${VLLM_CI_EXPECTED_GPU_COUNT:-1}"
+  local logical_gpus="${VLLM_CI_EXPECTED_GPU_COUNT:-1}"
+  local expected_gpus=""
 
-  if [[ ! "${expected_gpus}" =~ ^[0-9]+$ ]]; then
-    echo "Invalid VLLM_CI_EXPECTED_GPU_COUNT=${expected_gpus}" >&2
+  if [[ ! "${logical_gpus}" =~ ^[0-9]+$ ]]; then
+    echo "Invalid VLLM_CI_EXPECTED_GPU_COUNT=${logical_gpus}" >&2
     return 1
+  fi
+
+  expected_gpus="$(resolve_expected_rocm_device_count "${logical_gpus}")" || return 1
+  amd_diagnostics_expected_gpu_count="${expected_gpus}"
+  if is_dpx_gpu_mode; then
+    echo "DPX mode: expecting ${expected_gpus} visible ROCm device(s) for ${logical_gpus} allocated partition(s)"
   fi
 
   python3 -c "import encodings, importlib.metadata as im, importlib.util as iu; [im.version(d) for d in ('transformers', 'torch', 'ray', 'sympy', 'markupsafe', 'vllm')]; missing=[m for m in ('torch.utils.model_zoo', 'transformers.models.nomic_bert', 'ray.dag', 'sympy.physics', 'markupsafe._speedups') if iu.find_spec(m) is None]; assert not missing, missing" || return 1
 
-  if [[ "${expected_gpus}" == "0" ]]; then
+  if [[ "${logical_gpus}" == "0" ]]; then
     echo "Native CPU-only AMD job: skipping ROCm device validation"
     return 0
   fi
@@ -626,6 +675,9 @@ collect_rocm_failure_diagnostics() {
     return 0
   fi
   amd_diagnostics_collected=1
+  amd_diagnostics_expected_gpu_count="$(
+    resolve_expected_rocm_device_count "${VLLM_CI_EXPECTED_GPU_COUNT:-1}"
+  )"
 
   if [[ "${amd_diagnostics_expected_gpu_count}" == "0" ]]; then
     echo "Skipping AMD GPU diagnostics for a CPU-only job."
@@ -698,14 +750,7 @@ collect_rocm_failure_diagnostics() {
   # the shared deadline before GPU health is captured.
   echo "AMD GPU diagnostics" | tee -a "${diagnostics_path}"
   if command -v amd-smi >/dev/null 2>&1; then
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi version
-    # Bus data identifies a card within the public node without publishing its
-    # persistent UUID, serial number, or process list.
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi static -b -g all
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi metric -e -k -P -x -g all
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi bad-pages -p -r -u -g all
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi metric -p -t -u -m -v -g all
-    run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" amd-smi xgmi -l -g all
+    collect_amd_smi_diagnostics "${diagnostics_path}" "${probe_deadline}"
   elif command -v rocm-smi >/dev/null 2>&1; then
     run_amd_diagnostic "${diagnostics_path}" "${probe_deadline}" rocm-smi \
       --showbus --showreplaycount --showrasinfo --showpagesinfo

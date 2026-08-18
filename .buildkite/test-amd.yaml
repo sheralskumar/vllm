@@ -17,6 +17,9 @@
 # dind(bool): when false, run the job directly in the AMD Kubernetes pod.
 #     When true or omitted, use the legacy Docker-in-Docker path.
 # num_gpus(int): override the number of GPUs for the test. defaults to 1 GPU. currently supports 2,4.
+# agent_pool(str): target queue suffix for the step (for example, dpx schedules on amd_dpx).
+#     DPX partitions expose two HIP devices per allocated GPU; run-amd-test.sh doubles the
+#     expected ROCm device count automatically on amd_dpx.
 # num_nodes(int): whether to simulate multi-node setup by launching multiple containers on one host,
 #     in this case, commands must be specified. the first command runs on the first host, the second
 #     command runs on the second host.
@@ -111,31 +114,6 @@ steps:
 #########################################################################################################################################
 
 
-#--------------------------------------------------------  mi355 · distributed  --------------------------------------------------------#
-
-- label: Distributed Tests (2xH100-2xMI355) # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 2
-  optional: true
-  working_dir: "/vllm-workspace/"
-  source_file_dependencies:
-  - vllm/distributed/
-  - vllm/v1/distributed/
-  - vllm/model_executor/layers/fused_moe/
-  - vllm/v1/attention/backends/
-  - vllm/v1/attention/selector.py
-  - tests/distributed/test_context_parallel.py
-  - tests/v1/distributed/test_dbo.py
-  - examples/features/data_parallel/data_parallel_offline.py
-  - vllm/_aiter_ops.py
-  - vllm/platforms/rocm.py
-  commands:
-  - pytest -v -s tests/distributed/test_context_parallel.py
-  - pytest -v -s tests/v1/distributed/test_dbo.py
-
 #--------------------------------------------------------  mi355 · entrypoints  --------------------------------------------------------#
 
 - label: Entrypoints Integration (API Server 2) # TBD
@@ -219,29 +197,6 @@ steps:
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/pooling
-
-#-----------------------------------------------------------  mi355 · evals  -----------------------------------------------------------#
-
-- label: Qwen3-30B-A3B-FP8-block Accuracy (B200-MI355) # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 2
-  working_dir: "/vllm-workspace"
-  source_file_dependencies:
-  - vllm/model_executor/models/
-  - vllm/model_executor/model_loader/
-  - vllm/model_executor/layers/quantization/
-  - vllm/model_executor/layers/fused_moe/
-  - vllm/distributed/eplb
-  - vllm/v1/attention/backends/
-  - vllm/v1/attention/selector.py
-  - .buildkite/scripts/scheduled_integration_test/
-  - vllm/_aiter_ops.py
-  - vllm/platforms/rocm.py
-  commands:
-  - bash .buildkite/scripts/scheduled_integration_test/qwen30b_a3b_fp8_block_ep_eplb.sh 0.8 200 8020 2 1
 
 #---------------------------------------------------------  mi355 · examples  ----------------------------------------------------------#
 
@@ -637,84 +592,6 @@ steps:
   - tests/v1/spec_decode
   commands:
   - pytest -v -s -m 'not slow_test' v1/spec_decode
-
-- label: NixlConnector PD + Spec Decode acceptance (2 GPUs) # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 2
-  optional: true
-  working_dir: "/vllm-workspace/tests"
-  source_file_dependencies:
-  - vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py
-  - vllm/v1/worker/kv_connector_model_runner_mixin.py
-  - tests/v1/kv_connector/nixl_integration/
-  - vllm/platforms/rocm.py
-  commands:
-  - uv pip install --system -r /vllm-workspace/requirements/kv_connectors_rocm.txt
-  - ROCM_ATTN=1 bash v1/kv_connector/nixl_integration/spec_decode_acceptance_test.sh
-
-- label: Distributed NixlConnector PD accuracy (4 GPUs) # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 4
-  optional: true
-  working_dir: "/vllm-workspace/tests"
-  source_file_dependencies:
-  - vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py
-  - tests/v1/kv_connector/nixl_integration/
-  - vllm/platforms/rocm.py
-  commands:
-  - uv pip install --system -r /vllm-workspace/requirements/kv_connectors_rocm.txt
-  - ROCM_ATTN=1 bash v1/kv_connector/nixl_integration/config_sweep_accuracy_test.sh
-
-- label: DP EP Distributed NixlConnector PD accuracy tests (4 GPUs) # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 4
-  optional: true
-  working_dir: "/vllm-workspace/tests"
-  source_file_dependencies:
-  - vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py
-  - tests/v1/kv_connector/nixl_integration/
-  - vllm/platforms/rocm.py
-  commands:
-  - uv pip install --system -r /vllm-workspace/requirements/kv_connectors_rocm.txt
-  - DP_EP=1 ROCM_ATTN=1 bash v1/kv_connector/nixl_integration/config_sweep_accuracy_test.sh
-
-#------------------------------------------------------  mi355 · weight_loading  -------------------------------------------------------#
-
-- label: Weight Loading Multiple GPU # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  num_gpus: 2
-  working_dir: "/vllm-workspace/tests"
-  source_file_dependencies:
-  - vllm/
-  - tests/weight_loading
-  commands:
-  - bash weight_loading/run_model_weight_loading_test.sh -c weight_loading/models-amd.txt
-
-- label: Weight Loading Multiple GPU - Large Models # TBD
-  timeout_in_minutes: 180
-  mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
-  dind: false
-  agent_pool: dpx
-  working_dir: "/vllm-workspace/tests"
-  num_gpus: 2
-  optional: true
-  source_file_dependencies:
-  - vllm/
-  - tests/weight_loading
-  commands:
-  - bash weight_loading/run_model_weight_loading_test.sh -c weight_loading/models-large-amd.txt
 
 #-----------------------------------------------------------  mi355 · misc  ------------------------------------------------------------#
 
