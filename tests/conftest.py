@@ -900,12 +900,11 @@ class HfRunner:
             # memory is already occupied, e.g. in
             # tests/basic_correctness/test_basic_correctness.py::test_models_distributed
             from tests.utils import (
-                get_physical_device_indices,
                 record_gpu_memory_usage_stats,
             )
 
             if (device_count := current_platform.device_count()) > 0:
-                devices = get_physical_device_indices(devices=list(range(device_count)))
+                devices = list(range(device_count))
                 mem_usage_stats = record_gpu_memory_usage_stats(devices=devices)
                 self.threshold_ratios = {
                     device: 0.05 + mem_used / mem_tot
