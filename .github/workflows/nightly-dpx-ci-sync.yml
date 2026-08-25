@@ -1,0 +1,108 @@
+name: Nightly DPX CI sync
+
+on:
+  schedule:
+    # Daily at 08:00 UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+# Fork-only workflow. Lives on the fork default branch (main) only.
+env:
+  UPSTREAM_REPO: vllm-project/vllm
+  UPSTREAM_BRANCH: main
+  SOURCE_BRANCH: fix/rocm-dpx-ci
+  SYNC_BRANCH: fix/rocm-dpx-ci-nightly
+
+concurrency:
+  group: nightly-dpx-ci-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    if: github.repository == 'sheralskumar/vllm'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork main
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git"
+          git fetch upstream "${UPSTREAM_BRANCH}"
+
+      - name: Run nightly sync
+        id: sync
+        run: bash .github/workflows/scripts/nightly-dpx-ci-sync.sh
+        env:
+          UPSTREAM_REMOTE: upstream
+          ORIGIN_REMOTE: origin
+
+      - name: Push synced branch
+        if: success()
+        run: git push origin "HEAD:${SYNC_BRANCH}" --force-with-lease
+
+      - name: Open or update failure issue
+        if: failure()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const title = 'Nightly DPX CI sync failed';
+            const body = [
+              `Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              '',
+              'The nightly sync onto `vllm-project/main` failed, usually because',
+              'an upstream change conflicts with a checked-in patch under',
+              '`.github/dpx-ci-sync/patches/`.',
+              '',
+              'To fix locally on fork `main`:',
+              '```bash',
+              'git checkout main',
+              'git fetch vllm-project main',
+              'git fetch origin fix/rocm-dpx-ci',
+              'git diff vllm-project/main origin/fix/rocm-dpx-ci -- \\',
+              '  .buildkite/scripts/hardware_ci/run-amd-test.sh \\',
+              '  tests/utils.py tests/conftest.py \\',
+              '  > /tmp/dpx.patch',
+              '# regenerate files under .github/dpx-ci-sync/patches/',
+              'UPSTREAM_REMOTE=vllm-project bash .github/workflows/scripts/nightly-dpx-ci-sync.sh',
+              '```',
+            ].join('\n');
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'nightly-dpx-ci-sync',
+              per_page: 1,
+            });
+
+            if (issues.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                body,
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['nightly-dpx-ci-sync', 'ci-failure'],
+            });
