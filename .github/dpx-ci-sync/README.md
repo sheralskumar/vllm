@@ -36,8 +36,8 @@ The script [`.github/workflows/scripts/nightly-dpx-ci-sync.sh`](../workflows/scr
    - `tests/conftest.py`
 4. Force-pushes the sync branch with `--force-with-lease`.
 
-If a patch fails to apply, the workflow fails and opens/updates a GitHub issue
-labeled `nightly-dpx-ci-sync`.
+If a patch fails to apply, the workflow fails. Check the Actions run email
+or the workflow log on GitHub for details.
 
 ## Refreshing patches
 
@@ -74,9 +74,34 @@ UPSTREAM_REMOTE=vllm-project bash .github/workflows/scripts/nightly-dpx-ci-sync.
 The workflow only runs when `github.repository == 'sheralskumar/vllm'`.
 Update that guard in the workflow file if your fork path differs.
 
-Ensure GitHub Actions is enabled on the fork and that the default
-`GITHUB_TOKEN` can push branches (`Settings → Actions → General → Workflow
-permissions → Read and write`).
+### Repository secret (required)
+
+The nightly branch is based on full upstream `main`, which includes
+`.github/workflows/*`. The default `GITHUB_TOKEN` **cannot** push commits that
+modify workflow files. Create a PAT and add it as repo secret **`DPX_CI_SYNC_TOKEN`**:
+
+**Fine-grained PAT (recommended):** scoped to `sheralskumar/vllm` only
+- Contents: Read and write
+- Workflows: Read and write
+
+**Classic PAT:** scopes `repo` + `workflow`
+
+The workflow passes this token to `actions/checkout` so clone and push both use
+it.
+
+### Actions settings
+
+Ensure GitHub Actions is enabled on the fork (`Settings → Actions → General`).
 
 Disable the upstream vLLM workflows you do not need under **Actions** in the
 GitHub UI. Only this workflow is required for nightly DPX CI sync.
+
+### One-time tag bootstrap
+
+If Buildkite fails with `No numeric version tag is reachable from the CI
+revision`, push upstream tags to the fork once:
+
+```bash
+git fetch vllm-project --tags
+git push origin --tags
+```

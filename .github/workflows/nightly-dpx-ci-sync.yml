@@ -18,8 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 jobs:
   sync:
@@ -31,7 +30,10 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN cannot push commits that touch .github/workflows/*.
+          # Use a PAT with Contents + Workflows (fine-grained) or repo + workflow
+          # (classic). Store as repo secret DPX_CI_SYNC_TOKEN.
+          token: ${{ secrets.DPX_CI_SYNC_TOKEN }}
 
       - name: Configure git author
         run: |
@@ -53,56 +55,3 @@ jobs:
       - name: Push synced branch
         if: success()
         run: git push origin "HEAD:${SYNC_BRANCH}" --force-with-lease
-
-      - name: Open or update failure issue
-        if: failure()
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
-        with:
-          script: |
-            const title = 'Nightly DPX CI sync failed';
-            const body = [
-              `Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              '',
-              'The nightly sync onto `vllm-project/main` failed, usually because',
-              'an upstream change conflicts with a checked-in patch under',
-              '`.github/dpx-ci-sync/patches/`.',
-              '',
-              'To fix locally on fork `main`:',
-              '```bash',
-              'git checkout main',
-              'git fetch vllm-project main',
-              'git fetch origin fix/rocm-dpx-ci',
-              'git diff vllm-project/main origin/fix/rocm-dpx-ci -- \\',
-              '  .buildkite/scripts/hardware_ci/run-amd-test.sh \\',
-              '  tests/utils.py tests/conftest.py \\',
-              '  > /tmp/dpx.patch',
-              '# regenerate files under .github/dpx-ci-sync/patches/',
-              'UPSTREAM_REMOTE=vllm-project bash .github/workflows/scripts/nightly-dpx-ci-sync.sh',
-              '```',
-            ].join('\n');
-
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'nightly-dpx-ci-sync',
-              per_page: 1,
-            });
-
-            if (issues.length > 0) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issues[0].number,
-                body,
-              });
-              return;
-            }
-
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-              labels: ['nightly-dpx-ci-sync', 'ci-failure'],
-            });
