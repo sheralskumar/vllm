@@ -17,6 +17,12 @@ def pytest_addoption(parser):
         default="1",
         help="Tensor parallel size to use for evaluation",
     )
+    parser.addoption(
+        "--load-iterations",
+        action="store",
+        default="20",
+        help="Number of model load iterations for load-only tests",
+    )
 
 
 @pytest.fixture(scope="session")
@@ -28,6 +34,11 @@ def config_list_file(pytestconfig, config_dir):
 @pytest.fixture(scope="session")
 def tp_size(pytestconfig):
     return pytestconfig.getoption("--tp-size")
+
+
+@pytest.fixture(scope="session")
+def load_iterations(pytestconfig):
+    return int(pytestconfig.getoption("--load-iterations"))
 
 
 def pytest_generate_tests(metafunc):
