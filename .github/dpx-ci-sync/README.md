@@ -24,7 +24,7 @@ reads `test-amd.yaml` from `fix/rocm-dpx-ci` and applies patches stored on
 ## How it works
 
 The workflow [`.github/workflows/nightly-dpx-ci-sync.yml`](../workflows/nightly-dpx-ci-sync.yml)
-runs daily (08:00 UTC) and on manual dispatch from **`main`**.
+runs daily (05:55 UTC) and on manual dispatch from **`main`**.
 
 The script [`.github/workflows/scripts/nightly-dpx-ci-sync.sh`](../workflows/scripts/nightly-dpx-ci-sync.sh):
 
