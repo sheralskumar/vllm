@@ -22,7 +22,7 @@ from collections.abc import Callable, Iterable, MutableMapping, Sequence
 from contextlib import ExitStack, contextmanager
 from multiprocessing import Process, get_context
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal, cast
+from typing import Any, Literal, cast
 from unittest.mock import patch
 
 import anthropic
@@ -46,6 +46,10 @@ from vllm.distributed import (
 from vllm.engine.arg_utils import AsyncEngineArgs
 from vllm.entrypoints.cli.serve import ServeSubcommand
 from vllm.logger import init_logger
+from vllm.model_executor.kernels.linear import (
+    _KernelT,
+    init_fp8_linear_kernel,
+)
 from vllm.model_executor.layers.quantization.utils.quant_utils import (
     QuantKey,
 )
@@ -60,9 +64,6 @@ from vllm.utils.torch_utils import (
     set_random_seed,  # noqa: F401 - re-exported for use in test files
 )
 from vllm.v1.engine.utils import get_engine_process_shutdown_timeout
-
-if TYPE_CHECKING:
-    from vllm.model_executor.kernels.linear import _KernelT
 
 logger = init_logger(__name__)
 
@@ -89,8 +90,6 @@ def prewarm_hf_cache(assets: list[tuple[str, str]]) -> None:
 
 if current_platform.is_rocm():
     from amdsmi import (
-        amdsmi_get_gpu_vram_usage,
-        amdsmi_get_processor_handles,
         amdsmi_init,
         amdsmi_shut_down,
     )
@@ -147,28 +146,6 @@ ROCM_ENGINE_KWARGS: dict = (
 _TILELANG_TVM_PYTHONPATH_FRAGMENT = os.path.join(
     "tilelang", "3rdparty", "tvm", "python"
 )
-_SENSITIVE_CLI_ARG_NARGS = {"--api-key": "+", "--hf-token": "?"}
-
-
-def _redact_sensitive_cli_args(args: Sequence[str]) -> list[str]:
-    redacted_args = list(args)
-    index = 0
-    while index < len(args):
-        name, separator, _ = args[index].partition("=")
-        nargs = _SENSITIVE_CLI_ARG_NARGS.get(name.replace("_", "-"))
-        if nargs is None:
-            index += 1
-            continue
-        if separator:
-            redacted_args[index] = f"{name}=***"
-        index += 1
-        if not separator or nargs == "+":
-            while index < len(args) and not args[index].startswith("-"):
-                redacted_args[index] = "***"
-                index += 1
-                if nargs == "?":
-                    break
-    return redacted_args
 
 
 def _sanitize_pythonpath_value(pythonpath: str | None) -> str:
@@ -598,24 +575,15 @@ class RemoteVLLMServer:
         """Get total GPU memory used across all visible devices in bytes."""
         try:
             if current_platform.is_rocm():
-                with _nvml():
-                    handles = amdsmi_get_processor_handles()
-                    devices = get_physical_device_indices(
-                        list(range(current_platform.device_count()))
-                    )
-                    total_used_mib = 0
-                    for device in devices:
-                        handle = handles[device]
-                        vram_info = amdsmi_get_gpu_vram_usage(handle)
-                        total_used_mib += vram_info["vram_used"]
-                    # amdsmi reports VRAM in MiB; convert to bytes so this
-                    # matches the CUDA/nvml branch (already bytes) and the
-                    # byte-based target in _wait_for_gpu_memory_release. Without
-                    # this, that wait compares MiB against a ~2e9-byte target,
-                    # is always satisfied instantly, and returns "released to
-                    # 0.00 GB" while the previous server's VRAM is still
-                    # resident -- OOMing the next server's startup on ROCm.
-                    return total_used_mib * 1024 * 1024
+                # HIP/torch is partition-scoped (one NPS2 vGPU, ~144 GiB).
+                # amdsmi/rocm-smi on DPX gpu-0 reports the parent card
+                # (~288 GiB) and includes the sibling job's VRAM, so the
+                # teardown wait false-fails when the other partition loads.
+                total_used = 0
+                for i in range(current_platform.device_count()):
+                    free, total = torch.cuda.mem_get_info(i)
+                    total_used += total - free
+                return float(total_used)
             elif current_platform.is_cuda():
                 with _nvml():
                     total_used = 0
@@ -653,9 +621,13 @@ class RemoteVLLMServer:
             # Can't query GPU memory - nothing to do
             return
 
-        # Allow up to 2 GiB overhead above baseline for driver/context state
-        # that may persist between server instances.
-        headroom_bytes = 2 * 1024 * 1024 * 1024
+        # Allow leftover driver/context state between server instances.
+        # ROCm often keeps ~2.5–4 GiB resident (see wait_for_gpu_memory_to_clear).
+        headroom_bytes = (
+            4 * 1024 * 1024 * 1024
+            if current_platform.is_rocm()
+            else 2 * 1024 * 1024 * 1024
+        )
         target = baseline + headroom_bytes
 
         start = time.time()
@@ -806,8 +778,8 @@ class RemoteOpenAIServer(RemoteVLLMServer):
             env.update(env_dict)
         _sanitize_pythonpath_env(env)
         serve_cmd = ["vllm", "serve", model, *vllm_serve_args]
-        redacted_serve_cmd = _redact_sensitive_cli_args(serve_cmd)
-        print(f"Launching RemoteOpenAIServer with: {' '.join(redacted_serve_cmd)}")
+        print(f"Launching RemoteOpenAIServer with: {' '.join(serve_cmd)}")
+        print(f"Environment variables: {env}")
         self.proc: subprocess.Popen = subprocess.Popen(
             serve_cmd,
             env=env,
@@ -834,10 +806,7 @@ class RemoteLaunchRenderServer(RemoteVLLMServer):
             env.update(env_dict)
         _sanitize_pythonpath_env(env)
         serve_cmd = ["vllm", "launch", "render", model, *vllm_serve_args]
-        redacted_serve_cmd = _redact_sensitive_cli_args(serve_cmd)
-        print(
-            f"Launching RemoteLaunchRenderServer with: {' '.join(redacted_serve_cmd)}"
-        )
+        print(f"Launching RemoteLaunchRenderServer with: {' '.join(serve_cmd)}")
         self.proc: subprocess.Popen = subprocess.Popen(
             serve_cmd,
             env=env,
@@ -1573,10 +1542,11 @@ def record_gpu_memory_usage_stats(
     output: dict[int, tuple[float, float]] = {}
     for device in devices:
         if current_platform.is_rocm():
-            dev_handle = amdsmi_get_processor_handles()[device]
-            mem_info = amdsmi_get_gpu_vram_usage(dev_handle)
-            gb_used = mem_info["vram_used"] / 2**10
-            gb_total = mem_info["vram_total"] / 2**10
+            # Logical HIP device. amdsmi is not HIP_VISIBLE_DEVICES-aware and
+            # on DPX partition 0 reports full-card VRAM (~288 GiB).
+            free, total = torch.cuda.mem_get_info(device)
+            gb_used = (total - free) / 2**30
+            gb_total = total / 2**30
         elif current_platform.is_xpu():
             # nvml/amdsmi are unavailable on XPU. Query device memory through
             # torch.accelerator.get_memory_info, which the XPU platform patches
@@ -1604,7 +1574,10 @@ def wait_for_gpu_memory_to_clear(
     poll_interval_s: float = 5,
 ) -> None:
     assert threshold_bytes is not None or threshold_ratio is not None
-    devices = get_physical_device_indices(devices)
+    # HIP already applies HIP/CUDA_VISIBLE_DEVICES. Remapping to amdsmi
+    # physical ids is wrong on DPX (gpu-0 = full card).
+    if not current_platform.is_rocm():
+        devices = get_physical_device_indices(devices)
     if isinstance(threshold_bytes, int):
         threshold_bytes = {device: threshold_bytes for device in devices}
     elif isinstance(threshold_bytes, dict):
@@ -2373,11 +2346,9 @@ class TestFP8Layer(torch.nn.Module):
         out_dtype: torch.dtype | None = None,
         transpose_weights: bool = False,
         device: torch.device | None = None,
-        force_kernel: "type[_KernelT] | None" = None,
+        force_kernel: type[_KernelT] | None = None,
     ):
         super().__init__()
-        from vllm.model_executor.kernels.linear import init_fp8_linear_kernel
-
         self.input_size_per_partition = weight_shape[1]
         self.output_size_per_partition = weight_shape[0]
         self.logical_widths = [self.output_size_per_partition]
