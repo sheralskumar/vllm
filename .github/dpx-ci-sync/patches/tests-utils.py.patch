@@ -1,38 +1,8 @@
 diff --git a/tests/utils.py b/tests/utils.py
-index 0c2cfeb6a0..ca1716f945 100644
+index 0c2cfeb6a0..b69bfae4e9 100644
 --- a/tests/utils.py
 +++ b/tests/utils.py
-@@ -22,7 +22,7 @@ from collections.abc import Callable, Iterable, MutableMapping, Sequence
- from contextlib import ExitStack, contextmanager
- from multiprocessing import Process, get_context
- from pathlib import Path
--from typing import TYPE_CHECKING, Any, Literal, cast
-+from typing import Any, Literal, cast
- from unittest.mock import patch
- 
- import anthropic
-@@ -46,6 +46,10 @@ from vllm.distributed import (
- from vllm.engine.arg_utils import AsyncEngineArgs
- from vllm.entrypoints.cli.serve import ServeSubcommand
- from vllm.logger import init_logger
-+from vllm.model_executor.kernels.linear import (
-+    _KernelT,
-+    init_fp8_linear_kernel,
-+)
- from vllm.model_executor.layers.quantization.utils.quant_utils import (
-     QuantKey,
- )
-@@ -61,9 +65,6 @@ from vllm.utils.torch_utils import (
- )
- from vllm.v1.engine.utils import get_engine_process_shutdown_timeout
- 
--if TYPE_CHECKING:
--    from vllm.model_executor.kernels.linear import _KernelT
--
- logger = init_logger(__name__)
- 
- FP8_DTYPE = current_platform.fp8_dtype()
-@@ -89,8 +90,6 @@ def prewarm_hf_cache(assets: list[tuple[str, str]]) -> None:
+@@ -89,8 +89,6 @@ def prewarm_hf_cache(assets: list[tuple[str, str]]) -> None:
  
  if current_platform.is_rocm():
      from amdsmi import (
@@ -41,36 +11,7 @@ index 0c2cfeb6a0..ca1716f945 100644
          amdsmi_init,
          amdsmi_shut_down,
      )
-@@ -147,28 +146,6 @@ ROCM_ENGINE_KWARGS: dict = (
- _TILELANG_TVM_PYTHONPATH_FRAGMENT = os.path.join(
-     "tilelang", "3rdparty", "tvm", "python"
- )
--_SENSITIVE_CLI_ARG_NARGS = {"--api-key": "+", "--hf-token": "?"}
--
--
--def _redact_sensitive_cli_args(args: Sequence[str]) -> list[str]:
--    redacted_args = list(args)
--    index = 0
--    while index < len(args):
--        name, separator, _ = args[index].partition("=")
--        nargs = _SENSITIVE_CLI_ARG_NARGS.get(name.replace("_", "-"))
--        if nargs is None:
--            index += 1
--            continue
--        if separator:
--            redacted_args[index] = f"{name}=***"
--        index += 1
--        if not separator or nargs == "+":
--            while index < len(args) and not args[index].startswith("-"):
--                redacted_args[index] = "***"
--                index += 1
--                if nargs == "?":
--                    break
--    return redacted_args
- 
- 
- def _sanitize_pythonpath_value(pythonpath: str | None) -> str:
-@@ -598,24 +575,15 @@ class RemoteVLLMServer:
+@@ -598,24 +596,15 @@ class RemoteVLLMServer:
          """Get total GPU memory used across all visible devices in bytes."""
          try:
              if current_platform.is_rocm():
@@ -104,7 +45,7 @@ index 0c2cfeb6a0..ca1716f945 100644
              elif current_platform.is_cuda():
                  with _nvml():
                      total_used = 0
-@@ -653,9 +621,13 @@ class RemoteVLLMServer:
+@@ -653,9 +642,13 @@ class RemoteVLLMServer:
              # Can't query GPU memory - nothing to do
              return
  
@@ -121,30 +62,7 @@ index 0c2cfeb6a0..ca1716f945 100644
          target = baseline + headroom_bytes
  
          start = time.time()
-@@ -806,8 +778,8 @@ class RemoteOpenAIServer(RemoteVLLMServer):
-             env.update(env_dict)
-         _sanitize_pythonpath_env(env)
-         serve_cmd = ["vllm", "serve", model, *vllm_serve_args]
--        redacted_serve_cmd = _redact_sensitive_cli_args(serve_cmd)
--        print(f"Launching RemoteOpenAIServer with: {' '.join(redacted_serve_cmd)}")
-+        print(f"Launching RemoteOpenAIServer with: {' '.join(serve_cmd)}")
-+        print(f"Environment variables: {env}")
-         self.proc: subprocess.Popen = subprocess.Popen(
-             serve_cmd,
-             env=env,
-@@ -834,10 +806,7 @@ class RemoteLaunchRenderServer(RemoteVLLMServer):
-             env.update(env_dict)
-         _sanitize_pythonpath_env(env)
-         serve_cmd = ["vllm", "launch", "render", model, *vllm_serve_args]
--        redacted_serve_cmd = _redact_sensitive_cli_args(serve_cmd)
--        print(
--            f"Launching RemoteLaunchRenderServer with: {' '.join(redacted_serve_cmd)}"
--        )
-+        print(f"Launching RemoteLaunchRenderServer with: {' '.join(serve_cmd)}")
-         self.proc: subprocess.Popen = subprocess.Popen(
-             serve_cmd,
-             env=env,
-@@ -1573,10 +1542,11 @@ def record_gpu_memory_usage_stats(
+@@ -1573,10 +1566,11 @@ def record_gpu_memory_usage_stats(
      output: dict[int, tuple[float, float]] = {}
      for device in devices:
          if current_platform.is_rocm():
@@ -160,7 +78,7 @@ index 0c2cfeb6a0..ca1716f945 100644
          elif current_platform.is_xpu():
              # nvml/amdsmi are unavailable on XPU. Query device memory through
              # torch.accelerator.get_memory_info, which the XPU platform patches
-@@ -1604,7 +1574,10 @@ def wait_for_gpu_memory_to_clear(
+@@ -1604,7 +1598,10 @@ def wait_for_gpu_memory_to_clear(
      poll_interval_s: float = 5,
  ) -> None:
      assert threshold_bytes is not None or threshold_ratio is not None
@@ -172,16 +90,3 @@ index 0c2cfeb6a0..ca1716f945 100644
      if isinstance(threshold_bytes, int):
          threshold_bytes = {device: threshold_bytes for device in devices}
      elif isinstance(threshold_bytes, dict):
-@@ -2373,11 +2346,9 @@ class TestFP8Layer(torch.nn.Module):
-         out_dtype: torch.dtype | None = None,
-         transpose_weights: bool = False,
-         device: torch.device | None = None,
--        force_kernel: "type[_KernelT] | None" = None,
-+        force_kernel: type[_KernelT] | None = None,
-     ):
-         super().__init__()
--        from vllm.model_executor.kernels.linear import init_fp8_linear_kernel
--
-         self.input_size_per_partition = weight_shape[1]
-         self.output_size_per_partition = weight_shape[0]
-         self.logical_widths = [self.output_size_per_partition]
