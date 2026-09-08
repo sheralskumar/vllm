@@ -206,6 +206,36 @@ def _temporarily_sanitized_pythonpath_env():
             os.environ["PYTHONPATH"] = original
 
 
+_SENSITIVE_CLI_ARGS = frozenset({
+    "--api-key", "--api_key", "--hf-token", "--hf_token",
+})
+
+
+def _redact_sensitive_cli_args(args: list[str]) -> list[str]:
+    """Return a copy of args with sensitive values replaced by ***.
+
+    Handles --flag=value and --flag val1 val2 (redacts until next --flag).
+    """
+    result = []
+    in_sensitive = False
+    for arg in args:
+        matched_eq = False
+        for flag in _SENSITIVE_CLI_ARGS:
+            if arg.startswith(flag + "="):
+                result.append(flag + "=***")
+                matched_eq = True
+                in_sensitive = False
+                break
+        if matched_eq:
+            continue
+        if arg.startswith("-"):
+            in_sensitive = arg in _SENSITIVE_CLI_ARGS
+            result.append(arg)
+            continue
+        result.append("***" if in_sensitive else arg)
+    return result
+
+
 def requires_spawn_multiprocessing() -> bool:
     """Whether this platform requires spawn instead of fork for test processes."""
     return current_platform.is_rocm() or current_platform.is_xpu()
