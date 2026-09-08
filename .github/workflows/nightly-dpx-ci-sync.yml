@@ -1,0 +1,57 @@
+name: Nightly DPX CI sync
+
+on:
+  schedule:
+    # Daily at 08:00 UTC
+    - cron: '55 5 * * *'
+  workflow_dispatch:
+
+# Fork-only workflow. Lives on the fork default branch (main) only.
+env:
+  UPSTREAM_REPO: vllm-project/vllm
+  UPSTREAM_BRANCH: main
+  SOURCE_BRANCH: fix/rocm-dpx-ci
+  SYNC_BRANCH: fix/rocm-dpx-ci-nightly
+
+concurrency:
+  group: nightly-dpx-ci-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: github.repository == 'sheralskumar/vllm'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork main
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: main
+          fetch-depth: 0
+          # GITHUB_TOKEN cannot push commits that touch .github/workflows/*.
+          # Use a PAT with Contents + Workflows (fine-grained) or repo + workflow
+          # (classic). Store as repo secret DPX_CI_SYNC_TOKEN.
+          token: ${{ secrets.DPX_CI_SYNC_TOKEN }}
+
+      - name: Configure git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git"
+          git fetch upstream "${UPSTREAM_BRANCH}"
+
+      - name: Run nightly sync
+        id: sync
+        run: bash .github/workflows/scripts/nightly-dpx-ci-sync.sh
+        env:
+          UPSTREAM_REMOTE: upstream
+          ORIGIN_REMOTE: origin
+
+      - name: Push synced branch
+        if: success()
+        run: git push origin "HEAD:${SYNC_BRANCH}" --force-with-lease
