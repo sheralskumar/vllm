@@ -87,7 +87,6 @@
 #   * [Language Models Test (Extended Generation)]: Install fast path packages for testing against transformers (mamba, conv1d).    #
 #   * [Multi-Modal Models (Standard) 1-4]:                                                                                          #
 #     - Do NOT remove `VLLM_WORKER_MULTIPROC_METHOD=spawn` setting as ROCm requires this for certain models to function.            #
-#   * [Transformers Nightly Models]: Whisper needs `VLLM_WORKER_MULTIPROC_METHOD=spawn` to avoid deadlock.                          #
 #   * [Plugin Tests (2 GPUs)]:                                                                                                      #
 #     - {`pytest -v -s plugins_tests/test_oot_registration_online.py`}: It needs a clean process                                    #
 #     - {`pytest -v -s plugins_tests/test_oot_registration_offline.py`}: It needs a clean process                                   #
