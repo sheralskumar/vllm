@@ -16,6 +16,7 @@ import soundfile as sf
 from tests.entrypoints.speech_to_text.conftest import add_attention_backend
 from tests.utils import RemoteOpenAIServer
 from vllm.logger import init_logger
+from vllm.platforms import current_platform
 from vllm.multimodal.media.audio import load_audio
 
 logger = init_logger(__name__)
@@ -65,7 +66,19 @@ def _get_server_args(attention_config):
 
 
 @pytest.fixture(
-    scope="module", params=["openai/whisper-small", "google/gemma-3n-E2B-it"]
+    scope="module",
+    params=[
+        "openai/whisper-small",
+        pytest.param(
+            "google/gemma-3n-E2B-it",
+            marks=pytest.mark.skipif(
+                current_platform.is_rocm()
+                and hasattr(current_platform, "get_device_name")
+                and "gfx950" in (current_platform.get_device_name() or ""),
+                reason="gemma-3n-E2B-it causes EngineDeadError on MI355 (gfx950) DPX",
+            ),
+        ),
+    ],
 )
 def server(request):
     # Parametrize over model name
