@@ -17,6 +17,7 @@ import pytest
 import yaml
 
 from vllm.platforms import current_platform
+from vllm.platforms.rocm import on_gfx950
 
 DEFAULT_RTOL = 0.08
 
@@ -136,6 +137,11 @@ def test_lm_eval_correctness_param(config_filename, tp_size):
     eval_config = yaml.safe_load(config_filename.read_text(encoding="utf-8"))
 
     _check_rocm_gpu_arch_requirement(eval_config)
+
+    if on_gfx950() and "asym" in config_filename.name:
+        pytest.skip(
+            "INT8 compressed-tensors asym LM eval not validated on gfx950 DPX"
+        )
 
     results = launch_lm_eval(eval_config, tp_size)
 

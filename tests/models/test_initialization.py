@@ -216,6 +216,14 @@ def test_can_initialize_large_subset(model_arch: str, monkeypatch: pytest.Monkey
         if current_platform.is_rocm():
             pytest.skip("HY V4 ROCm initialization requires #54405")
 
+    if model_arch == "CohereCompassForConditionalGeneration":
+        from vllm.platforms import current_platform
+
+        if current_platform.is_rocm():
+            pytest.skip(
+                "CohereCompass init fails on ROCm (North-Micro processor bug)"
+            )
+
     can_initialize(model_arch, monkeypatch, HF_EXAMPLE_MODELS)
 
 
