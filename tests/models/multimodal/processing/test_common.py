@@ -227,6 +227,12 @@ def _test_processing_correctness(
         check_version_reason="vllm",
     )
 
+    if (
+        model_id_or_arch == "DeepseekV4ForConditionalGeneration"
+        or model_id == "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+    ) and not current_platform.is_cuda():
+        pytest.skip("Deepseek V4 vision is only supported on CUDA")
+
     model_config = ModelConfig(
         model_id,
         tokenizer=model_info.tokenizer or model_id,

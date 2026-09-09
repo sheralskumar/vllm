@@ -548,9 +548,10 @@ initialize_native_environment() {
   : "${HF_HUB_DOWNLOAD_TIMEOUT:=300}"
   : "${HF_HUB_ETAG_TIMEOUT:=60}"
   if [[ "${VLLM_CI_EXPECTED_GPU_COUNT:-1}" == "0" ]]; then
-    # CPU-only native jobs intentionally reuse the ROCm wheel. Make that target
-    # explicit so platform selection does not depend on wheel metadata.
-    VLLM_TARGET_DEVICE=cpu
+    # CPU-only native jobs reuse the ROCm wheel and historically ran as
+    # RocmPlatform under DinD (kfd was still passed through). Keep the ROCm
+    # target so import-time hardware branches match those jobs.
+    VLLM_TARGET_DEVICE=rocm
     export VLLM_TARGET_DEVICE
   fi
   export TMPDIR VLLM_RPC_BASE_PATH
