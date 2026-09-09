@@ -211,6 +211,22 @@ _SENSITIVE_CLI_ARGS = frozenset({
 })
 
 
+def is_gfx950() -> bool:
+    """Return True on MI350/MI355 (gfx950) ROCm hardware.
+
+    Prefer this over parsing ``get_device_name()`` strings, which do not
+    include the GCN arch name on DPX runners.
+    """
+    if not current_platform.is_rocm():
+        return False
+    try:
+        from vllm.platforms.rocm import on_gfx950
+
+        return on_gfx950()
+    except ImportError:
+        return False
+
+
 def _redact_sensitive_cli_args(args: list[str]) -> list[str]:
     """Return a copy of args with sensitive values replaced by ***.
 
@@ -224,7 +240,8 @@ def _redact_sensitive_cli_args(args: list[str]) -> list[str]:
             if arg.startswith(flag + "="):
                 result.append(flag + "=***")
                 matched_eq = True
-                in_sensitive = False
+                # Support `--api-key=value extra-secret` multi-value forms.
+                in_sensitive = True
                 break
         if matched_eq:
             continue
