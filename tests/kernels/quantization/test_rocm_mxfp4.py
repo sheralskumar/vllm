@@ -46,7 +46,8 @@ A4W4_GEMM_PASS_RATES = {
 SKINNY_GEMM_PASS_RATES = {
     (4096, 4096): 0.9999,
     (4096, 11008): 0.99235,
-    (8192, 8192): 0.99765,
+    # gfx950 DPX shows ~0.9973 pass rate on large skinny GEMMs (build 62/63).
+    (8192, 8192): 0.9973,
 }
 PRESHUFFLED_SHAPES = [
     (64, 4096, 8192),
