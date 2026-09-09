@@ -14,7 +14,7 @@ import pytest_asyncio
 import soundfile as sf
 
 from tests.entrypoints.speech_to_text.conftest import add_attention_backend
-from tests.utils import RemoteOpenAIServer
+from tests.utils import RemoteOpenAIServer, is_gfx950
 from vllm.logger import init_logger
 from vllm.platforms import current_platform
 from vllm.multimodal.media.audio import load_audio
@@ -72,9 +72,7 @@ def _get_server_args(attention_config):
         pytest.param(
             "google/gemma-3n-E2B-it",
             marks=pytest.mark.skipif(
-                current_platform.is_rocm()
-                and hasattr(current_platform, "get_device_name")
-                and "gfx950" in (current_platform.get_device_name() or ""),
+                is_gfx950(),
                 reason="gemma-3n-E2B-it causes EngineDeadError on MI355 (gfx950) DPX",
             ),
         ),
