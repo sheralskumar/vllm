@@ -551,6 +551,7 @@ steps:
   - tests/entrypoints/openai
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
+  - pytest -v -s entrypoints/openai/completion --ignore=entrypoints/openai/completion/test_tensorizer_entrypoint.py
   - pytest -v -s entrypoints/openai/ --ignore=entrypoints/openai/completion --ignore=entrypoints/openai/chat_completion --ignore=entrypoints/openai/responses --ignore=entrypoints/openai/correctness
 
 - label: ":amd: (DPX·MI300) Entrypoints Integration (Responses API)" # TBD
@@ -857,6 +858,7 @@ steps:
   - vllm/
   - tests/models/test_terratorch.py
   - tests/models/test_registry.py
+  - tests/models/test_hyv4_rocm.py
   - tests/models/test_vision.py
   commands:
   - pytest -v -s models/test_terratorch.py models/test_registry.py
@@ -1305,6 +1307,7 @@ steps:
   - tests/entrypoints/openai
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
+  - pytest -v -s entrypoints/openai/completion --ignore=entrypoints/openai/completion/test_tensorizer_entrypoint.py
   - pytest -v -s entrypoints/openai --ignore=entrypoints/openai/completion --ignore=entrypoints/openai/chat_completion --ignore=entrypoints/openai/responses --ignore=entrypoints/openai/correctness
 
 - label: ":amd: (DPX·MI355) Entrypoints Integration (API Server OpenAI - Part 2)" # TBD
@@ -1321,7 +1324,6 @@ steps:
   commands:
   - export VLLM_WORKER_MULTIPROC_METHOD=spawn
   - pytest -v -s entrypoints/openai/chat_completion
-  - pytest -v -s entrypoints/openai/completion --ignore=entrypoints/openai/completion/test_tensorizer_entrypoint.py
 
 - label: ":amd: (DPX·MI355) Entrypoints Integration (API Server Generate)" # TBD
   timeout_in_minutes: 40
