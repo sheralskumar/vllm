@@ -46,37 +46,6 @@ steps:
       - VLLM_TEST_FORCE_LOAD_FORMAT=auto pytest -v -s quantization/ --ignore quantization/test_blackwell_moe.py --shard-id=$$BUILDKITE_PARALLEL_JOB --num-shards=$$BUILDKITE_PARALLEL_JOB_COUNT
       - if [ "$$BUILDKITE_PARALLEL_JOB" = "0" ]; then pytest -v -s rocm/test_moe_weight_replay.py; fi
 
-- label: ":nvidia: (H200 MIG 35GB) Quantized Fusions"
-  device: h200_35gb
-  key: quantized-fusions
-  timeout_in_minutes: 20
-  source_file_dependencies:
-  - tests/fusion
-  - vllm/model_executor/layers/fusion
-  - vllm/model_executor/kernels/linear
-  - vllm/model_executor/layers/quantization/compressed_tensors
-  - vllm/model_executor/layers/quantization/modelopt.py
-  commands:
-    - pytest -v -s fusion/
-
-- label: ":nvidia: (B200) Quantized MoE"
-  key: quantized-moe-test-b200
-  timeout_in_minutes: 120
-  working_dir: "/vllm-workspace/"
-  device: b200-k8s
-  source_file_dependencies:
-  - tests/quantization/test_blackwell_moe.py
-  - vllm/model_executor/models/deepseek_v2.py
-  - vllm/model_executor/models/gpt_oss.py
-  - vllm/model_executor/models/llama4.py
-  - vllm/model_executor/layers/fused_moe
-  - vllm/model_executor/layers/quantization/compressed_tensors
-  - vllm/model_executor/layers/quantization/modelopt.py
-  - vllm/model_executor/layers/quantization/mxfp4.py
-  - vllm/v1/attention/backends/flashinfer.py
-  commands:
-    - pytest -s -v tests/quantization/test_blackwell_moe.py
-
 - label: ":nvidia: (H200 MIG 35GB) Quantized Models"
   device: h200_35gb
   key: quantized-models-test

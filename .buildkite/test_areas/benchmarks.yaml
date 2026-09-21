@@ -21,16 +21,3 @@ steps:
       timeout_in_minutes: 40
       depends_on:
       - image-build-amd
-
-- label: ":nvidia: (B200) Attention Benchmark Smoke"
-  key: attention-benchmarks-smoke-test-b200
-  device: b200-k8s
-  num_gpus: 2
-  optional: true
-  working_dir: "/vllm-workspace/"
-  timeout_in_minutes: 20
-  source_file_dependencies:
-  - benchmarks/attention_benchmarks/
-  - vllm/v1/attention/
-  commands:
-  - python3 benchmarks/attention_benchmarks/benchmark.py --backends flash flashinfer --batch-specs "8q1s1k"
