@@ -23,6 +23,7 @@ from vllm.model_executor.layers.linear import (
 from vllm.model_executor.layers.logits_processor import LogitsProcessor
 from vllm.model_executor.layers.vocab_parallel_embedding import ParallelLMHead
 from vllm.model_executor.models.interfaces import SupportsLoRA
+from tests.utils import wait_for_gpu_memory_to_clear
 from vllm.platforms import current_platform
 from vllm.transformers_utils.repo_utils import hf_api
 
@@ -373,3 +374,16 @@ def reset_default_device():
     original_device = torch.get_default_device()
     yield
     torch.set_default_device(original_device)
+
+
+@pytest.fixture(autouse=True)
+def wait_for_gpu_memory_before_lora_test():
+    """Wait for GPU memory to settle before each LoRA test on DPX."""
+    if current_platform.is_rocm():
+        wait_for_gpu_memory_to_clear(
+            devices=[0],
+            threshold_ratio=0.05,
+            timeout_s=60,
+            stable_duration_s=2,
+        )
+    yield
