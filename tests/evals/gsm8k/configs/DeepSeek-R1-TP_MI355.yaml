@@ -14,4 +14,5 @@ server_args: >-
   --enable-expert-parallel
   --attention-backend ROCM_AITER_MLA
   --moe-backend aiter
-  --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
+  --gpu-memory-utilization 0.85
+  --speculative-config '{"method":"mtp","num_speculative_tokens":1}'
