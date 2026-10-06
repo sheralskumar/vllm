@@ -607,29 +607,48 @@ initialize_native_environment() {
 
 check_dpx_gpu_exclusivity() {
   local devices=(/dev/dri/renderD*)
-  local device_id lock_status
+  local expected="${VLLM_CI_EXPECTED_GPU_COUNT:-1}"
+  local device device_id lock_status
 
-  if [[ "${#devices[@]}" -ne 1 || ! -c "${devices[0]}" ]]; then
-    echo "DPX guard requires exactly one render device; refusing to start tests." >&2
+  if [[ ! "${expected}" =~ ^[0-9]+$ || "${expected}" -lt 1 ]]; then
+    echo "DPX guard requires VLLM_CI_EXPECTED_GPU_COUNT >= 1, got ${expected}; refusing to start tests." >&2
     return 1
   fi
+  # One render node per claimed NPS2 partition. A literal unmatched glob is not a device.
+  if [[ "${#devices[@]}" -ne "${expected}" || ! -c "${devices[0]}" ]]; then
+    echo "DPX guard requires exactly ${expected} render device(s); found ${#devices[@]} (${devices[*]}); refusing to start tests." >&2
+    return 1
+  fi
+  for device in "${devices[@]}"; do
+    if [[ ! -c "${device}" ]]; then
+      echo "DPX guard requires render devices; ${device} is not a character device; refusing to start tests." >&2
+      return 1
+    fi
+  done
   # This queue mounts the same host-local HF cache into every pod on the node.
   if ! mountpoint -q "${HF_HOME}"; then
     echo "DPX guard requires the shared HF cache mount; refusing to start tests." >&2
     return 1
   fi
-  device_id=$(stat -Lc '%t-%T' "${devices[0]}") || return 1
   mkdir -p "${HF_HOME}/.vllm-dpx-locks" || return 1
-  # Hold the descriptor through workload and teardown; never delete the file.
-  exec {dpx_gpu_lock_fd}>>"${HF_HOME}/.vllm-dpx-locks/${device_id}.lock" || return 1
-  flock -n -E 75 "${dpx_gpu_lock_fd}" && return 0
-  lock_status=$?
-  if [[ "${lock_status}" -eq 75 ]]; then
-    echo "DPX GPU collision: ${devices[0]} (${device_id}) is already locked by another CI job; refusing to start tests." >&2
-  else
-    echo "DPX GPU lock failed (status ${lock_status}); refusing to start tests." >&2
-  fi
-  return 1
+  # Hold every descriptor through workload and teardown; never delete the files.
+  # These stay global so bash does not close the locks when this function returns.
+  dpx_gpu_lock_fds=()
+  for device in "${devices[@]}"; do
+    device_id=$(stat -Lc '%t-%T' "${device}") || return 1
+    exec {dpx_gpu_lock_fd}>>"${HF_HOME}/.vllm-dpx-locks/${device_id}.lock" || return 1
+    dpx_gpu_lock_fds+=("${dpx_gpu_lock_fd}")
+    if flock -n -E 75 "${dpx_gpu_lock_fd}"; then
+      continue
+    fi
+    lock_status=$?
+    if [[ "${lock_status}" -eq 75 ]]; then
+      echo "DPX GPU collision: ${device} (${device_id}) is already locked by another CI job; refusing to start tests." >&2
+    else
+      echo "DPX GPU lock failed for ${device} (${device_id}) (status ${lock_status}); refusing to start tests." >&2
+    fi
+    return 1
+  done
 }
 
 run_native_preflight() {
