@@ -6,6 +6,10 @@
 
 set -euo pipefail
 
+# Refresh the working directory mtime so the scratch cleanup daemon does not
+# delete this checkout if it was created during a long queue wait (>8h).
+touch . 2>/dev/null || true
+
 metadata_get() {
     local key="$1"
     if command -v buildkite-agent >/dev/null 2>&1; then
