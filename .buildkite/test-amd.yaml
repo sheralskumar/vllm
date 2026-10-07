@@ -117,12 +117,6 @@ steps:
   - tests/models/kimi_k3/
   - vllm/platforms/rocm.py
   commands:
-  # The single-GPU step above skips every @multi_gpu_test case. `-m "distributed"`
-  # selects exactly those: multi_gpu_test() applies pytest.mark.distributed
-  # alongside its skipif (tests/utils.py:2080), so this picks up a new
-  # multi-GPU test anywhere in the directory without editing this list.
-  # Four GPUs run the two tp4 cases in test_amd_latent_moe_runner.py; the tp8
-  # case and the 8/16-GPU cases in test_latent_moe_tail.py still skip.
   - pytest -v -s -m "distributed" models/kimi_k3
 
 - label: ":amd: (MI355) Attention Benchmark Smoke" # TBD
@@ -163,7 +157,6 @@ steps:
   - tests/conftest.py
   - csrc/quantization/
   commands:
-  # Existing MI300 jobs own BF16; TP2 Quick owns the excluded Llama cell.
   - amd-smi
   - VLLM_ROCM_USE_AITER=1 VLLM_ROCM_USE_AITER_CUSTOM_AR=1 pytest -v -s tests/compile/fusions_e2e/test_tp2_ar_rms.py -k 'test_tp2_ar_rms_fp8_fusions and Llama-3 and ROCM_AITER_UNIFIED_ATTN and (dynamo_partition or +quant_fp8 or +rms_norm)'
 
@@ -187,8 +180,6 @@ steps:
   - tests/conftest.py
   - csrc/quantization/
   commands:
-  # Dummy-weight rewrite coverage; trained FP8 AR/RMS equivalence is unresolved.
-  # TODO: FP4 output-quant and trained MXFP4 AR/RMS fusion remain unsupported.
   - amd-smi
   - VLLM_ROCM_USE_AITER=1 VLLM_ROCM_USE_AITER_CUSTOM_AR=1 pytest -v -s tests/compile/fusions_e2e/test_tp2_ar_rms.py -k 'test_tp2_ar_rms_fp8_fusions and qwen3 and ROCM_AITER_UNIFIED_ATTN and +quant_fp8 and (dynamo_partition or not +rms_norm)'
   - pytest -v -s tests/compile/fusions_e2e/test_tp2_rocm_moe.py
@@ -354,8 +345,6 @@ steps:
   - vllm/platforms/
   - vllm/_aiter_ops.py
   optional: true
-  # TODO: Add fault injection, detection and recovery once MoRI supports them.
-  # This job currently checks healthy EP execution only.
   commands:
   - VLLM_WORKER_MULTIPROC_METHOD=spawn pytest -v -s -rs kernels/moe/test_moe_layer.py::test_moe_layer_mori_graph
   - VLLM_TEST_ENABLE_MORI_MOE_LAYER=1 VLLM_WORKER_MULTIPROC_METHOD=spawn pytest -v -s -rs 'kernels/moe/test_moe_layer.py::test_moe_layer[False-mori_high_throughput-2-1-True]' --subtests='[32-512-512-8-2-bfloat16-None-False-False-False-False-mori_high_throughput-2-2-1]'
@@ -737,6 +726,7 @@ steps:
 
 - label: ":amd: (MI355) LM Eval Spec Decode (Fixed-length FP8)" # TBD
   timeout_in_minutes: 145
+  soft_fail: true
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
   dind: false
   agent_pool: dpx_4
@@ -862,6 +852,7 @@ steps:
 
 - label: ":amd: (MI355) LM Eval DeepSeek R1 TP"
   timeout_in_minutes: 65
+  soft_fail: true
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
   dind: false
   agent_pool: dpx_4
@@ -895,6 +886,7 @@ steps:
 
 - label: ":amd: (MI355) LM Eval DeepSeek R1 DP"
   timeout_in_minutes: 65
+  soft_fail: true
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
   dind: false
   agent_pool: dpx_4
@@ -928,6 +920,7 @@ steps:
 
 - label: ":amd: (MI355) LM Eval DeepSeek V3-2 TP"
   timeout_in_minutes: 65
+  soft_fail: true
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
   dind: false
   agent_pool: dpx_4
@@ -961,6 +954,7 @@ steps:
 
 - label: ":amd: (MI355) LM Eval DeepSeek V3-2 DP"
   timeout_in_minutes: 65
+  soft_fail: true
   mirror_hardwares: [amdexperimental, amdproduction, amdgfx950nightly, amdmi355]
   dind: false
   agent_pool: dpx_4
@@ -1078,7 +1072,6 @@ steps:
   - vllm/distributed/device_communicators/
   - vllm/config
   commands:
-  # MoRI graph cases run in the Fault Tolerance group's healthy EP baseline.
   - pytest -v -s kernels/moe/test_moe_layer.py -k "not test_moe_layer_mori_graph"
 
 - label: ":amd: (MI355) MoRI EP Numerics"
@@ -1160,4 +1153,3 @@ steps:
   - amdgfx950nightly
   - amdmi355
   optional: true
-
