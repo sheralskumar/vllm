@@ -20,10 +20,10 @@ steps:
     - pytest -v -s v1/attention
   mirror:
     amd:
-      label: ":amd: (MI300) V1 Attention"
+      label: ":amd: (MI300 DPX) V1 Attention"
       dind: false
       automatic_shard: true
-      device: mi300_1
+      device: mi300_dpx
       timeout_in_minutes: 125
       depends_on:
       - image-build-amd

@@ -19,9 +19,9 @@ steps:
   mirror:
     amd:
       automatic_shard: true
-      label: ':amd: (MI300) Distributed Compile'
+      label: ':amd: (MI300 DPX) Distributed Compile'
       dind: false
-      device: mi300_2
+      device: mi300_dpx_2
       timeout_in_minutes: 65
       working_dir: /vllm-workspace/
       depends_on:

@@ -67,9 +67,9 @@ steps:
   mirror:
     amd:
       automatic_shard: true
-      label: ":amd: (MI300) Distributed Models"
+      label: ":amd: (MI300 DPX) Distributed Models"
       dind: false
-      device: mi300_2
+      device: mi300_dpx_2
       timeout_in_minutes: 80
       depends_on:
       - image-build-amd

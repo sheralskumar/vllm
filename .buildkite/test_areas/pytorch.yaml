@@ -61,9 +61,9 @@ steps:
   mirror:
     amd:
       automatic_shard: true
-      label: ":amd: (MI300) PyTorch Compilation / Dynamic Shapes"
+      label: ":amd: (MI300 DPX) PyTorch Compilation / Dynamic Shapes"
       dind: false
-      device: mi300_1
+      device: mi300_dpx
       timeout_in_minutes: 45
       depends_on:
       - image-build-amd
@@ -161,10 +161,10 @@ steps:
     --ignore compile/passes/distributed
   mirror:
     amd:
-      label: ':amd: (MI300) PyTorch Compilation Passes'
+      label: ':amd: (MI300 DPX) PyTorch Compilation Passes'
       dind: false
       automatic_shard: true
-      device: mi300_1
+      device: mi300_dpx
       timeout_in_minutes: 80
       working_dir: /vllm-workspace/tests
       depends_on:

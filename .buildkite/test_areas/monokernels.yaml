@@ -69,11 +69,11 @@ steps:
     "tests/models/test_dsv41_mono_layers.py::test_mono_decode_matches_the_model[8-8]"
     "tests/models/test_dsv41_mono_layers.py::test_mono_decode_matches_the_model[8-28]"
 
-- label: ':amd: (MI300) DeepSeek-V4.1 gfx942 Mono Decode Layers'
+- label: ':amd: (MI300 DPX) DeepSeek-V4.1 gfx942 Mono Decode Layers'
   key: dsv41-mono-decode-layers-gfx942-amd
   automatic_shard: true
   dind: false
-  device: mi300_4
+  device: mi300_dpx_4
   num_devices: 4
   timeout_in_minutes: 40
   working_dir: /vllm-workspace/
@@ -89,11 +89,11 @@ steps:
   - pytest -v -s tests/models/test_dsv41_mono_numerics.py
   - pytest -v -s tests/models/test_dsv41_mono_layers.py
 
-- label: ":amd: (MI300) DeepSeek-V4.1 gfx942 Mono Decode Kernels"
+- label: ":amd: (MI300 DPX) DeepSeek-V4.1 gfx942 Mono Decode Kernels"
   key: dsv41-mono-decode-gfx942-amd
   automatic_shard: true
   dind: false
-  device: mi300_1
+  device: mi300_dpx
   num_devices: 1
   timeout_in_minutes: 30
   working_dir: /vllm-workspace/

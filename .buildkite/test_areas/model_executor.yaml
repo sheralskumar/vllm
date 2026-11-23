@@ -32,9 +32,9 @@ steps:
 #     - pytest -v -s entrypoints/openai/completion/test_tensorizer_entrypoint.py --timeout=900 --timeout-method=thread
 #   mirror:
 #     amd:
-#       label: ":amd: (MI300) Model Executor"
+#       label: ":amd: (MI300 DPX) Model Executor"
 #       dind: false
-#       device: mi300_1
+#       device: mi300_dpx
 #       timeout_in_minutes: 75
 #       depends_on:
 #       - image-build-amd
@@ -57,8 +57,8 @@ steps:
 #       - pytest -v -s entrypoints/openai/completion/test_tensorizer_entrypoint.py --timeout=900 --timeout-method=thread
 
 # Keep the AMD job: its commands do not run this installation.
-- label: ':amd: (MI300) Model Executor'
-  device: mi300_1
+- label: ':amd: (MI300 DPX) Model Executor'
+  device: mi300_dpx
   key: amd-model-executor
   automatic_shard: true
   timeout_in_minutes: 75
