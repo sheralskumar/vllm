@@ -410,9 +410,9 @@ steps:
   mirror:
     amd:
       automatic_shard: true
-      label: ":amd: (MI300) V1 E2E"
+      label: ":amd: (MI300 DPX) V1 E2E"
       dind: false
-      device: mi300_2
+      device: mi300_dpx_2
       timeout_in_minutes: 30
       depends_on:
       - image-build-amd

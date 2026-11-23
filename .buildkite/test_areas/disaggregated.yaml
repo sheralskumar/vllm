@@ -100,10 +100,10 @@ steps:
     amd:
       # Run on PRs even when the L4 step is optional (nightly only).
       optional: false
-      label: ":amd: (MI300) Push NixlConnector PP prefill PD accuracy"
+      label: ":amd: (MI300 DPX) Push NixlConnector PP prefill PD accuracy"
       automatic_shard: true
       dind: false
-      device: mi300_4
+      device: mi300_dpx_4
       timeout_in_minutes: 55
       depends_on:
         - image-build-amd
@@ -171,10 +171,10 @@ steps:
     amd:
       # Run on PRs even when the L4 step is optional (nightly only).
       optional: false
-      label: ":amd: (MI300) CrossLayer KV layout Distributed NixlConnector PD accuracy"
+      label: ":amd: (MI300 DPX) CrossLayer KV layout Distributed NixlConnector PD accuracy"
       automatic_shard: true
       dind: false
-      device: mi300_4
+      device: mi300_dpx_4
       timeout_in_minutes: 60
       depends_on:
         - image-build-amd
@@ -206,10 +206,10 @@ steps:
     amd:
       # Run on PRs even when the L4 step is optional (nightly only).
       optional: false
-      label: ":amd: (MI300) Hybrid SSM NixlConnector PD accuracy"
+      label: ":amd: (MI300 DPX) Hybrid SSM NixlConnector PD accuracy"
       automatic_shard: true
       dind: false
-      device: mi300_4
+      device: mi300_dpx_4
       timeout_in_minutes: 80
       depends_on:
         - image-build-amd
@@ -266,10 +266,10 @@ steps:
     - pytest -v -s v1/kv_connector/nixl_integration/test_pd_scripts.py::test_edge_cases
   mirror:
     amd:
-      label: ":amd: (MI300) NixlConnector PD edge case"
+      label: ":amd: (MI300 DPX) NixlConnector PD edge case"
       automatic_shard: true
       dind: false
-      device: mi300_2
+      device: mi300_dpx_2
       timeout_in_minutes: 65
       depends_on:
         - image-build-amd

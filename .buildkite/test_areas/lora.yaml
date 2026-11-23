@@ -75,9 +75,9 @@ steps:
       # Run on PRs even when the L4 step is optional (nightly only).
       optional: false
       automatic_shard: true
-      label: ":amd: (MI300) LoRA TP (Distributed)"
+      label: ":amd: (MI300 DPX) LoRA TP (Distributed)"
       dind: false
-      device: mi300_4
+      device: mi300_dpx_4
       working_dir: "/vllm-workspace/tests"
       timeout_in_minutes: 65
       depends_on:

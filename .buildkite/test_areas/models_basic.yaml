@@ -469,12 +469,12 @@ steps:
       commands:
       - pytest -v -s models/qwen4_exp/test_hc_ops_amd.py
 
-- label: ":amd: (MI300) Qwen4 Exp"
+- label: ":amd: (MI300 DPX) Qwen4 Exp"
   key: qwen4-exp-unit-tests-mi300
   automatic_shard: true
   timeout_in_minutes: 40
   dind: false
-  device: mi300_1
+  device: mi300_dpx
   working_dir: "/vllm-workspace/tests"
   depends_on:
   - image-build-amd
